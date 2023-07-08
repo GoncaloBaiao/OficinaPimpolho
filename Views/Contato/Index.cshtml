@@ -16,8 +16,9 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Nome</th>
-      <th scope="col">Email</th>
-      <th scope="col">Tele</th>
+      <th scope="col">Localidade</th>
+      <th scope="col">Código postal</th>
+      <th scope="col">Número de telefone</th>
       <th scope="col"></th>
     </tr>
   </thead>
@@ -29,6 +30,7 @@
       <td>@item.Nome</td>
       <td>@item.Localidade</td>
       <td>@item.CodigoPostal</td>
+      <td>@item.NumTelemovel</td>
       <td>
           <div class="btn-group" role="group">
             <a role="button"  asp-controller="Contato" asp-route-id="@item.IdOficina" asp-action="Editar" class="btn btn-primary">Editar</a>
