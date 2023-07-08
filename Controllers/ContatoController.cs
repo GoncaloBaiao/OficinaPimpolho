@@ -24,30 +24,36 @@ namespace OficinaPimpolho.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult Editar()
+        public IActionResult Editar(int Id)
         {
-            return View();
+            Oficina oficina = contatoRepositorio.ObterOficinasId(Id);
+
+            return View(oficina);
         }
+
         [HttpPost]
-        public IActionResult Edit()
+        public IActionResult Edit(Oficina oficina)
         {
 
+            contatoRepositorio.Atualizar(oficina);
             return RedirectToAction("Index");
         }
+        
 
-        public IActionResult Apagar()
+
+        public IActionResult ApagarConfirmacao(int Id)
         {
-            return View();
+            var oficina = contatoRepositorio.ObterOficinasId(Id);
+            return View(oficina);
         }
         [HttpPost]
         public IActionResult Criar(Oficina oficina) {
             contatoRepositorio.Adicionar(oficina);
             return RedirectToAction("Index");
         }
-        [HttpPost]
+        
         public IActionResult Apagar(int Id) {
-            Oficina oficina = contatoRepositorio.ObterOficinasId(Id);
-            contatoRepositorio.Apagar(oficina);
+            contatoRepositorio.Apagar(Id);
             return RedirectToAction("Index");
         }
 

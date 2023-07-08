@@ -6,8 +6,9 @@ namespace OficinaPimpolho.Repositorio
     {
         Oficina Adicionar(Oficina oficina);
         List<Oficina> ObterOficinas();
-        Oficina Apagar (Oficina oficina);
+        bool Apagar (int id);
         Oficina ObterOficinasId (int Id);
-    }
+        void Atualizar(Oficina oficina);
+            }
 
 }

@@ -1,29 +1,33 @@
-﻿@model HomeModel 
+﻿@model Oficina 
 @{
     ViewData["Title"] = "Lista de contatos";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Editar contato (Pimpolho)</h1>
+    <h1 class="display-4">Editar contato (@Model.Nome)</h1>
 </div>
 
-<form asp-controller="Contato" asp-action="Editar" method="post">
+<form asp-controller="Contato" asp-action="Edit" method="post">
+
+    <input type="hidden" asp-for="IdOficina"/>
+
   <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Nome</label>
-    <input type="text" class="form-control" id="exampleInputEmail1">
+    <label for="exampleInputNomel1" class="form-label">Nome</label>
+    <input type="text" asp-for="Nome" class="form-control" id="exampleInputEmail1">
   </div>
   <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Email</label>
-    <input type="email" class="form-control" id="exampleInputPassword1">
+    <label for="exampleInputEmail1" class="form-label">Localidade</label>
+    <input type="text" asp-for="Localidade" class="form-control" id="exampleInputPassword1">
   </div>
   <div class="mb-3">
-    <label for="exampleInputTelele1" class="form-label">telele</label>
-    <input type="number" class="form-control" id="exampleInputTelele1">
+    <label for="exampleInputTelele1" class="form-label">Código Postal</label>
+    <input type="text" asp-for="CodigoPostal" class="form-control" id="exampleInputTelele1">
   </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  <div class="mb-3">
+    <label for="exampleInputTelele1" class="form-label">telefone</label>
+    <input type="text" asp-for="NumTelemovel" class="form-control" id="exampleInputTelele1">
   </div>
+ 
   <button type="submit" class="btn btn-primary">Submit</button>
   <a class="btn btn-secondary" asp-controller="Contato" asp-action="Index" role="button">Voltar</a>
 </form>
