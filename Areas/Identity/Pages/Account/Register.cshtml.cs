@@ -153,7 +153,7 @@ namespace OficinaPimpolho.Areas.Identity.Pages.Account
                     EmailConfirmed = true, // o email não está formalmente confirmado
                     LockoutEnabled = true,  // o utilizador pode ser bloqueado
                     LockoutEnd = new DateTime(DateTime.Now.Day, 1, 1),  // data em que termina o bloqueio,
-                                                                        // se não for anulado antes
+                                                                        // se não for anulado antes 
                 };
 
 
