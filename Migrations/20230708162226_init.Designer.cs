@@ -12,7 +12,7 @@ using OficinaPimpolho.Data;
 namespace OficinaPimpolho.Migrations
 {
     [DbContext(typeof(OficinaPimpolhoContext))]
-    [Migration("20230708111925_init")]
+    [Migration("20230708162226_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -253,7 +253,7 @@ namespace OficinaPimpolho.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("MarcacaoIdMarcacao")
+                    b.Property<int?>("MarcacaoIdMarcacao")
                         .HasColumnType("int");
 
                     b.Property<string>("Morada")
@@ -611,9 +611,7 @@ namespace OficinaPimpolho.Migrations
                 {
                     b.HasOne("OficinaPimpolho.Models.Marcacao", "Marcacao")
                         .WithMany()
-                        .HasForeignKey("MarcacaoIdMarcacao")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MarcacaoIdMarcacao");
 
                     b.Navigation("Marcacao");
                 });

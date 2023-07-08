@@ -251,7 +251,7 @@ namespace OficinaPimpolho.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("MarcacaoIdMarcacao")
+                    b.Property<int?>("MarcacaoIdMarcacao")
                         .HasColumnType("int");
 
                     b.Property<string>("Morada")
@@ -609,9 +609,7 @@ namespace OficinaPimpolho.Migrations
                 {
                     b.HasOne("OficinaPimpolho.Models.Marcacao", "Marcacao")
                         .WithMany()
-                        .HasForeignKey("MarcacaoIdMarcacao")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MarcacaoIdMarcacao");
 
                     b.Navigation("Marcacao");
                 });

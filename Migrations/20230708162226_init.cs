@@ -227,7 +227,7 @@ namespace OficinaPimpolho.Migrations
                     Morada = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
                     CodPostal = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Ntelemovel = table.Column<string>(type: "nvarchar(14)", maxLength: 14, nullable: false),
-                    MarcacaoIdMarcacao = table.Column<int>(type: "int", nullable: false)
+                    MarcacaoIdMarcacao = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -236,8 +236,7 @@ namespace OficinaPimpolho.Migrations
                         name: "FK_Cliente_Marcacao_MarcacaoIdMarcacao",
                         column: x => x.MarcacaoIdMarcacao,
                         principalTable: "Marcacao",
-                        principalColumn: "IdMarcacao",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "IdMarcacao");
                 });
 
             migrationBuilder.CreateTable(

@@ -77,8 +77,8 @@ namespace OficinaPimpolho.Models
         [RegularExpression("(00)?([0-9]{2,3})?[1-9][0-9]{8}", ErrorMessage = "Escreva, por favor, um nº de telemóvel com 9 algarismos. Se quiser, pode acrescentar o indicativo nacional e o internacional.")]
         public String Ntelemovel { get; set; }
 
-        [Required]
-        public Marcacao Marcacao { get; set; }
+
+        public Marcacao? Marcacao { get; set; }
 
     }
 }
