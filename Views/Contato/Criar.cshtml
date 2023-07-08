@@ -1,0 +1,31 @@
+﻿@model Oficina 
+@{
+    ViewData["Title"] = "Lista de contatos";
+}
+
+<div class="text-center">
+
+    
+    <h1 class="display-4">Registar contato</h1>
+
+</div>
+<form asp-controller="Contato" asp-action="Criar" method="post">
+
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Nome</label>
+    <input type="text" asp-for="Nome" class="form-control" id="exampleInputEmail1">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Localidade</label>
+    <input type="text" asp-for="Localidade" class="form-control" id="exampleInputPassword1">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputTelele1" class="form-label">Codigo-Postal</label>
+    <input type="text" asp-for="CodigoPostal" class="form-control" id="exampleInputTelele1">
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
