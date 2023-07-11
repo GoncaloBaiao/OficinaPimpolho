@@ -12,7 +12,7 @@ using OficinaPimpolho.Data;
 namespace OficinaPimpolho.Migrations
 {
     [DbContext(typeof(OficinaPimpolhoContext))]
-    [Migration("20230708162226_init")]
+    [Migration("20230711162755_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -344,6 +344,9 @@ namespace OficinaPimpolho.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdMarcacao"), 1L, 1);
+
+                    b.Property<DateTime>("DataMarcacao")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Nome")
                         .IsRequired()

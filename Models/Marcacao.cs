@@ -23,6 +23,15 @@ namespace OficinaPimpolho.Models
         [Required]
         public double Preco { get; set; }
 
+        /// <summary>
+        /// Data de Nascimento do Cliente
+        /// </summary>
+        [Required(ErrorMessage = "Data de Marcação obrigatória")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Data de Marcação")]
+        public DateTime DataMarcacao { get; set; }
+
         [Required]
         public ICollection<MarcacaoServico> MarcacaoServico { get; set; }
 

@@ -343,6 +343,9 @@ namespace OficinaPimpolho.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdMarcacao"), 1L, 1);
 
+                    b.Property<DateTime>("DataMarcacao")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(50)

@@ -1,4 +1,5 @@
 ﻿@using MVC_oficinas.Models
+@model Marcacao
 @{
     ViewData["Title"] = "Lista de contatos";
     Layout = null;
@@ -63,10 +64,10 @@
 </header>
 <!-- end header section -->
 
-        <div class="text-center">
-            <br />
-            <h1 class="text-white">Marcações</h1>
-        </div>
+<div class="text-center">
+    <br />
+    <h1 class="text-white">Marcações</h1>
+</div>
 
 <body onload="startTime()">
     <div class="container2">
@@ -149,10 +150,46 @@
             </div>
         </div>
         <div class="text-center" style="margin-top:30vh">
-            <button type="button" class="btn btn-outline-success">Marcar</button>
-            <button type="button" class="btn btn-outline-warning">Editar</button>
-            <button type="button" class="btn btn-outline-danger">Apagar</button>
+            <a class="btn btn-outline-success" role="button" asp-controller="Marcacao" asp-action="Criar">Fazer marcação</a>
+
         </div>
+
+        <div class="text-center">
+            <br />
+            <table class="table text-white" style="margin-left:-100px">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Preço</th>
+                        <th scope="col">Data da marcação</th>
+                        <th scope="col">Serviços</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                        @foreach (var item in Model)
+            {
+                <tr>
+      <th scope="row">@item.</th>
+      <td>@item.Nome</td>
+      <td>@item.Localidade</td>
+      <td>@item.CodigoPostal</td>
+      <td>@item.NumTelemovel</td>
+      <td>
+          <div class="btn-group" role="group">
+            <a role="button"  asp-controller="Contato" asp-route-id="@item.IdOficina" asp-action="Editar" class="btn btn-primary">Editar</a>
+            <a role="button" class="btn btn-danger"  asp-route-id="@item.IdOficina" asp-controller="Contato" asp-action="ApagarConfirmacao">Apagar</a>
+          </div>
+      </td>
+    </tr>
+            }
+                    
+                </tbody>
+            </table>
+        </div>
+
 </body>
 
 <script src=~/js/site.js></script>
@@ -335,9 +372,9 @@
     .flipped {
         transform: rotateY(-180deg);
         /*height:400px;
-          width:200px;
-          left:calc(50% - 100px);
-          top:calc(50vh - 200px);*/
+              width:200px;
+              left:calc(50% - 100px);
+              top:calc(50vh - 200px);*/
     }
 
     .backcontainer1 {

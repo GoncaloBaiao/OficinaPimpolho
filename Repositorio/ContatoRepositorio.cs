@@ -55,5 +55,46 @@ namespace OficinaPimpolho.Repositorio
     
 
         }
+
+        public Marcacao Adicionar(Marcacao marcacao)
+        {
+            _context.Marcacao.Add(marcacao);
+            _context.SaveChanges();
+            return marcacao;
+        }
+
+        public List<Marcacao> ObterMarcacao()
+        {
+            return _context.Marcacao.ToList();
+        }
+
+        public Marcacao ObterMarcacaoId(int Id)
+        {
+            return _context.Marcacao.Find(Id);
+        }
+
+        public void Atualizar(Marcacao marcacao)
+        {
+            Marcacao marcacaoDb = ObterMarcacaoId(marcacao.IdMarcacao);
+            if (marcacaoDb != null)
+            {
+                marcacaoDb.Nome = marcacao.Nome;
+                marcacaoDb.Preco = marcacao.Preco;
+                marcacaoDb.DataMarcacao = marcacao.DataMarcacao;
+                marcacaoDb.MarcacaoServico = marcacao.MarcacaoServico;
+
+                _context.Marcacao.Update(marcacaoDb);
+                _context.SaveChanges();
+            }
+        }
+
+        public bool ApagarMarcacao(int id)
+        {
+            Marcacao marcacaoDb = ObterMarcacaoId(id);
+            if (marcacaoDb == null) throw new System.Exception("Houve um erro");
+            _context.Remove(marcacaoDb);
+            _context.SaveChanges();
+            return true;
+        }
     }
 }
