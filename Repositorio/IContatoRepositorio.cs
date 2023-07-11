@@ -14,6 +14,10 @@ namespace OficinaPimpolho.Repositorio
         Marcacao ObterMarcacaoId (int Id);
         void Atualizar(Marcacao marcacao);
         bool ApagarMarcacao (int id);
-            }
+            
+        List<Servico> ObterServicos();
+
+        Servico ObterServicoId(int Id);
+    }
 
 }

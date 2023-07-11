@@ -1,5 +1,5 @@
 ﻿@using MVC_oficinas.Models
-@model Marcacao
+@model MarcacaoViewModel
 @{
     ViewData["Title"] = "Lista de contatos";
     Layout = null;
@@ -150,7 +150,23 @@
             </div>
         </div>
         <div class="text-center" style="margin-top:30vh">
-            <a class="btn btn-outline-success" role="button" asp-controller="Marcacao" asp-action="Criar">Fazer marcação</a>
+            <form asp-controller="Marcacoes" asp-action="Criar" method="post" id="criar_marcacao">
+                <input asp-for="Marcacao.IdMarcacao" type="hidden" />
+                <input type="date" asp-for="Marcacao.DataMarcacao" />
+                <input type="text" asp-for="Marcacao.Nome" id="nome_marcacao" />
+                <input asp-for="Marcacao.Preco" type="hidden" />
+           
+                    <div class="">
+                    @foreach(var serv in Model.Serviços)
+                    {
+                        <input type="checkbox" class="btn-check checkbox-input-servico" id="@serv.IdServico"  autocomplete="off">
+                        <label class="btn btn-outline-primary" for="@serv.IdServico">@serv.Nome</label>
+                    }
+                    </div>
+                   
+                <button class="btn btn-outline-success" type="submit">Fazer marcação</button>
+            </form>
+
 
         </div>
 
@@ -169,29 +185,92 @@
                 </thead>
                 <tbody>
 
-                        @foreach (var item in Model)
-            {
-                <tr>
-      <th scope="row">@item.</th>
-      <td>@item.Nome</td>
-      <td>@item.Localidade</td>
-      <td>@item.CodigoPostal</td>
-      <td>@item.NumTelemovel</td>
-      <td>
-          <div class="btn-group" role="group">
-            <a role="button"  asp-controller="Contato" asp-route-id="@item.IdOficina" asp-action="Editar" class="btn btn-primary">Editar</a>
-            <a role="button" class="btn btn-danger"  asp-route-id="@item.IdOficina" asp-controller="Contato" asp-action="ApagarConfirmacao">Apagar</a>
-          </div>
-      </td>
-    </tr>
-            }
-                    
+                    @foreach (var item in Model.MarcacaoList)
+                    {
+                        <tr>
+                            <th scope="row">@item.</th>
+                            <td>@item.Nome</td>
+                            <td>@item.Preco</td>
+                            <td>@item.DataMarcacao</td>
+
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a role="button" asp-controller="Contato" asp-route-id="@item.IdMarcacao" asp-action="Editar" class="btn btn-primary">Editar</a>
+                                    <a role="button" class="btn btn-danger" asp-route-id="@item.IdMarcacao" asp-controller="Contato" asp-action="ApagarConfirmacao">Apagar</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
                 </tbody>
             </table>
         </div>
 
 </body>
+@*
+<script>
 
+    var elems = document.getElementsByClassName("checkbox-input-servico")
+
+    var marcacao = {
+                IdMarcacao = 299,
+                Nome = document.getElementById("nome_marcacao"),
+                DataMarcacao = document.getElementById("DataMarcacao"),
+                Preco = 0.0
+                MarcacaoServico= ids
+            }
+
+    var form = document.getElementById("criar_marcacao")
+    form.addEventListener("submit",(e) => {
+        e.preventDefault();
+        
+        fetch("/Marcacoes/Criar", {
+            method: 'POST',
+            headers:{
+                'Content-Type': 'multipart/form-data'
+            },
+            body: JSON.stringify(marcacao)
+        }).then(response => response.json())
+            .then((data) => {
+                console.log({data})
+            })
+            .catch(error => console.error('Unable to add item.', error));
+
+    })
+    //function showChecked() {
+    //    var ids = []
+    //    for (var i = 0; i < elems.length; i++) {
+    //        if (elems[i].checked) {
+    //            ids.push(elems[i].id)
+    //           // console.log("checked" + elems[i].id)
+    //        }
+    //    }
+
+
+    //    const formData = new FormData();
+    //    var marcacao = {
+    //        IdMarcacao = 0,
+    //        Nome = document.getElementById("nome_marcacao"),
+    //        DataMarcacao = document.getElementById("DataMarcacao"),
+    //        Preco = 0.0
+    //        MarcacaoServico= ids
+    //    }
+    //    fetch("/Marcacoes/Criar", {
+    //        method: 'POST',
+    //        headers: {
+    //            'Accept': 'application/json',
+    //            'Content-Type': 'application/json'
+    //        },
+    //        body: JSON.stringify(marcacao)
+    //    })
+    //        .then(response => response.json())
+    //        .then((data) => {
+    //            console.log({data})
+    //        })
+    //        .catch(error => console.error('Unable to add item.', error));
+    //}
+
+</script>*@
 <script src=~/js/site.js></script>
 
 <style>
@@ -372,9 +451,9 @@
     .flipped {
         transform: rotateY(-180deg);
         /*height:400px;
-              width:200px;
-              left:calc(50% - 100px);
-              top:calc(50vh - 200px);*/
+                  width:200px;
+                  left:calc(50% - 100px);
+                  top:calc(50vh - 200px);*/
     }
 
     .backcontainer1 {

@@ -96,5 +96,15 @@ namespace OficinaPimpolho.Repositorio
             _context.SaveChanges();
             return true;
         }
+
+        public List<Servico> ObterServicos()
+        {
+            return _context.Servico.ToList();
+        }
+
+        public Servico ObterServicoId(int Id)
+        {
+            return _context.Servico.Find(Id);
+        }
     }
 }
