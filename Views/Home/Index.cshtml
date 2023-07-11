@@ -1,10 +1,167 @@
-﻿@model HomeModel 
+﻿@using MVC_oficinas.Models
+@model HomeModel
 @{
     ViewData["Title"] = "Página Inicial";
+    Layout = null;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Bem vindo!, @Model.Nome</h1>
-    <p>MVC OFICINAS</p>
-    <span>Email: @Model.Email</span>
-</div>
+<html>
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+
+    <title>AGENDACAR</title>
+
+    <!-- font wesome stylesheet -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+    <!-- Custom styles for this template -->
+    <link href="/css/style.css" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="/css/responsive.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="hero_area">
+        <!-- header section strats -->
+        <header class="header_section">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
+                    <a class="navbar-brand mr-5" asp-controller="Home" asp-action="Index">
+
+                        <span>
+                            AGENDACAR
+                        </span>
+                    </a>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+                            <ul class="navbar-nav  ">
+                                <li class="nav-item">
+                                    <a class="navbar-brand mr-5 text-white" asp-controller="Marcacoes" asp-action="Index">MARCAÇÕES</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="navbar-brand mr-5 text-white" asp-controller="Contato" asp-action="Index">OFICINAS</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        SERVIÇOS DE REPARAÇÃO
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="@Url.Action("About", "Home", new AboutViewModel {titulo = "Estofos", subtitulo = "A nossa equipa de técnicos de reparação de mobiliário e de pele móvel utiliza a tecnologia e as técnicas mais avançadas e precisas da indústria para revitalizar os seus artigos danificados.", description = "Utiliza ferramentas e métodos próprios para eliminar meticulosamente o desbotamento, os rasgões, os rasgões, os arranhões, as goivas, os riscos e os arranhões. Em muitos casos, podemos até restaurar com êxito artigos que tenham sido danificados pelo fogo ou pela água para um estado como novo. Graças à nossa capacidade de fornecer reparações de couro, vinil, tecido e estofos de alta qualidade e um serviço ao cliente excecional, conseguimos expandir o nosso negócio em muitas direções. O nosso objetivo é exceder as expectativas dos clientes. Estamos confiantes na nossa capacidade de ressuscitar os seus artigos danificados ou envelhecidos!", image = "/images/estofoCarro.jpg" })">Estofos</a>
+                                        <a class="dropdown-item" href="@Url.Action("About", "Home", new AboutViewModel {titulo = "Vidros", subtitulo = "As fissuras no pára-brisas dificultam a visão, colocam o vidro em risco de sofrer mais danos e comprometem o desempenho do seu veículo em caso de colisão. Todos estes problemas ameaçam a sua segurança e a dos seus passageiros, pelo que adiar a reparação ou substituição do pára-brisas é um risco.", description = "Oferecemos substituição de vidros para automóveis com serviço móvel gratuito na sua área. Quer se trate do pára-brisas dianteiro, do pára-brisas traseiro, da janela do condutor, da janela do passageiro ou do vidro do quarto.  Dispomos de vidro de qualidade do fabricante do equipamento original para um ajuste perfeito, serviço móvel gratuito, serviço no mesmo dia e uma garantia vitalícia nacional sobre o acabamento.", image = "/images/estofoCarro.jpg" })">Vidros</a>
+                                        <a class="dropdown-item" href="@Url.Action("About", "Home", new AboutViewModel {titulo = "Pneus", subtitulo = "Pequenos desalinhamentos e danos na direcção ou na suspensão podem ser difíceis de detectar, e é por isso que ajuda ter alguém a inspeccionar o nível de danos nos pneus. Estas inspecções podem proporcionar paz de espírito e ajudá-lo a evitar reparações dispendiosas de automóveis e pneus no futuro.", description = "A nossa equipa é altamente especializada em manutenção automóvel, reparações de veículos e substituição de pneus. Iremos observar e avaliar os danos nos pneus, bem como o impacto que podem ter no seu veículo. Deixe os nossos profissionais de reparação de pneus darem uma vista de olhos. Se algo não lhe parecer bem, é provável que haja um problema.", image = "/images/pneuReparo.jpg" })">Pneus</a>
+                                        <a class="dropdown-item" href="@Url.Action("About", "Home", new AboutViewModel {titulo = "Inspeção Periódica", subtitulo = "O processo de inspeção do seu veículo deve demorar cerca de uma hora a uma hora e meia.", description = "Em geral, o inspetor passará cerca de vinte minutos a inspecionar visualmente o seu veículo. Em seguida, o inspetor conduzirá o veículo durante cerca de meia hora para testar a sua segurança prática. Finalmente, os testes de emissões devem demorar apenas cerca de quinze minutos. Em geral, o inspetor passará cerca de vinte minutos a inspecionar visualmente o seu veículo. Em seguida, o inspetor conduzirá o veículo durante cerca de meia hora para testar a sua segurança prática. Finalmente, os testes de emissões devem demorar apenas cerca de quinze minutos. A manutenção de rotina consistente é o método mais fiável de garantir que o seu veículo está em condições de circular. No entanto, com tantos itens de serviço diferentes para tratar, uma inspeção é uma forma simples de verificar se tudo está em ordem.", image = "/images/inspecaoCarro.png" })">Inspeção Periódica</a>
+                                        <a class="dropdown-item" href="@Url.Action("About", "Home", new AboutViewModel {titulo = "Bate-chapas", subtitulo = "", description = "Mesmo os pequenos para-choques com as mais pequenas mossas e amolgadelas são perturbadores. A situação só piora se o acidente for mais grave. Em primeiro lugar, tem de contactar a sua companhia de seguros. Em seguida, deve providenciar o aluguer de um automóvel. Depois de tudo isso, precisa de encontrar uma oficina de carroçaria de qualidade. Podemos inspecionar a extensão dos danos na carroçaria e mecânicos. Muitas vezes, existem danos subjacentes que não são visíveis. Os nossos especialistas informá-lo-ão sobre o que o seu automóvel necessita para voltar ao estado de novo. Os nossos bate-chapas e pintores têm uma vasta experiência na reparação de danos menores até reparações mais complexas.", image = "/images/bateChapas.jpg" })">Bate-chapas</a>
+                                        <a class="dropdown-item" href="@Url.Action("About", "Home", new AboutViewModel {titulo = "Mecânica", subtitulo = "Os requisitos da reparação móvel de veículos perto de mim variam consoante as circunstâncias. Em algumas situações, é uma recolha e transferência básica do seu veículo, enquanto outras situações necessitarão de um reboque. Depois de efetuarmos o trabalho nas nossas instalações, devolvê-lo-emos a tempo.", description = "Se as luzes do painel de instrumentos do seu veículo não se acenderem adequadamente, é provável que o sistema elétrico esteja avariado. Outro indicador de um possível problema no sistema elétrico é se os faróis do seu veículo escurecerem quando conduz a baixa velocidade. Um técnico experiente efetuará um diagnóstico específico ao sistema elétrico do seu veículo para controlar a razão da avaria e concluir a reparação essencial. Um técnico verifica a bateria do carro, a doença, a veracidade e a reparação elétrica móvel perto de mim para verificar se esta consegue produzir energia suficiente. Se a integridade da bateria tiver colaborado, deve ser substituída. Para que a bateria, os cabos contíguos e os componentes eletrónicos sensíveis funcionem corretamente, é necessário levar um técnico para reparar o sistema elétrico do seu automóvel.", image = "/images/mecanica4.jpg" })">Mecânica</a>
+                                        <a class="dropdown-item" href="@Url.Action("About", "Home", new AboutViewModel {titulo = "Eletrónica", subtitulo = "Os requisitos da reparação móvel de veículos variam consoante as circunstâncias. Em algumas situações, é uma recolha e transferência básica do seu veículo, enquanto outras situações necessitarão de um reboque. Depois de efetuarmos o trabalho nas nossas instalações, devolvê-lo-emos a tempo.", description = "Se as luzes do painel de instrumentos do seu veículo não se acenderem adequadamente, é provável que o sistema elétrico esteja avariado. Outro indicador de um possível problema no sistema elétrico é se os faróis do seu veículo escurecerem quando conduz a baixa velocidade. Um técnico experiente efetuará um diagnóstico específico ao sistema elétrico do seu veículo para controlar a razão da avaria e concluir a reparação essencial. Um técnico verifica a bateria do carro, a doença, a veracidade e a reparação elétrica móvel perto de mim para verificar se esta consegue produzir energia suficiente.", image = "/images/eletronica2.jpg" })">Eletrónica</a>
+                                        <a class="dropdown-item" href="@Url.Action("About", "Home", new AboutViewModel {titulo = "Pintura", subtitulo = "Uma pintura automotiva bem feita pode fazer com que seu veículo se destaque na multidão. Quer esteja a reparar uma colisão, a renovar o seu carro antigo ou apenas a melhorar o aspecto do seu veículo favorito.", description = "Precisa apenas de um retoque na pintura? Não tem problema! A equipe da Penske Automotive Collision pode combinar perfeitamente a cor da pintura do seu carro e consertar aquelas lascas de pedra desagradáveis. Também podemos consertar a pintura rachada por meio do nosso processo de retoque de pintura. Oferecemos vários níveis de pintura, desde pintura de carroçaria completa até uma rápida actualização da pintura do seu carro antigo.", image = "/images/pintura.jpg" })">Pintura</a>
+                                        <a class="dropdown-item" href="@Url.Action("About", "Home", new AboutViewModel {titulo = "Assistência de Viagem", subtitulo = "Se o seu veículo deixar de circular por motivos mecânicos ou eléctricos, será enviado para o local um assistente de avaria.", description = "Em geral, os assistentes podem resolver problemas simples, como pneus furados, depósitos vazios ou chaves trancadas no carro, no próprio local. No entanto, se o problema for mais complexo e exigir mais conhecimentos, os assistentes irão provavelmente rebocar o seu veículo para o concessionário, oficina ou estação de serviço mais próxima. Em caso de avaria e de impossibilidade de continuar a conduzir, contacte-nos.", image = "/images/assistencia2.jpg" })">Assistência de Viagem</a>
+
+                                    </div>
+
+                                </li>
+                                <partial name="_LoginPartial" />
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <!-- end header section -->
+        <!-- slider section -->
+        <section class="slider_section position-relative">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="detail-box">
+                            <div>
+                                <h1>
+                                    Bem-vindo ao <br>
+                                    <span>
+                                        AGENDACAR
+                                    </span>
+                                </h1>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+        <!-- end slider section -->
+    </div>
+
+
+    <!-- about section -->
+
+    <section class="about_section layout_padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="detail-box">
+                        <div class="heading_container">
+                            <h2>
+                                Quem somos
+                            </h2>
+                        </div>
+                        <p>
+                            A AgendaCar surgiu na cadeira de Desenvolvimento Web do Politécnico de Tomar.
+                            O primeiro produto da AgendaCar foram os tubos de escape.
+                            Foi através deste compomente que a AgendaCar conquistou o seu espaço na área de após-venda, ocupando, atualmente, todo o tipo de serviços de reparação rápida de automóveis.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="img-box">
+                        <img src="images/shoopcar.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end about section -->
+
+
+    <section class="info_section layout_padding">
+        <div class="footer_contact">
+            <div class="heading_container">
+                <h2>
+                    CONTACTA-NOS
+                </h2>
+            </div>
+            <div class="box">
+                <a href="" class="img-box" style="margin-right: 10px;">
+                    <img src="images/location.png" alt="" class="img-1">
+                    <img src="images/location-o.png" alt="" class="img-2">
+                    Politécnico de Tomar
+                </a>
+                <a href="" class="img-box" style="margin-right: 10px;">
+                    <img src="images/call.png" alt="" class="img-1">
+                    <img src="images/call-o.png" alt="" class="img-2">
+                    +351 911111111
+                </a>
+                <a href="" class="img-box">
+                    <img src="images/envelope.png" alt="" class="img-1">
+                    <img src="images/envelope-o.png" alt="" class="img-2">
+                    agendacar
+                    <br>
+                    gmail.com
+                </a>
+            </div>
+        </div>
+
+
+    </section>
+
+
+
+
+</body>
+
+</html>

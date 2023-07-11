@@ -1,0 +1,359 @@
+﻿@using MVC_oficinas.Models
+@{
+    ViewData["Title"] = "Lista de contatos";
+    Layout = null;
+}
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>@ViewData["Title"] - Oficina Pimpolho</title>
+<!-- font wesome stylesheet -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<!-- bootstrap core css -->
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+<!-- Custom styles for this template -->
+<link href="/css/style.css" rel="stylesheet" />
+<!-- responsive style -->
+<link href="/css/responsive.css" rel="stylesheet" />
+
+<!-- header section strats -->
+<header class="header_section">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
+            <a class="navbar-brand mr-5" asp-controller="Home" asp-action="Index">
+
+                <span>
+                    AGENDACAR
+                </span>
+            </a>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+                    <ul class="navbar-nav  ">
+                        <li class="nav-item">
+                            <a class="navbar-brand mr-5 text-white" asp-controller="Marcacoes" asp-action="Index">MARCAÇÕES</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-brand mr-5 text-white" asp-controller="Contato" asp-action="Index">OFICINAS</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                SERVIÇOS DE REPARAÇÃO
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="@Url.Action("About", "Home", new AboutViewModel {titulo = "Estofos", subtitulo = "A nossa equipa de técnicos de reparação de mobiliário e de pele móvel utiliza a tecnologia e as técnicas mais avançadas e precisas da indústria para revitalizar os seus artigos danificados.", description = "Utiliza ferramentas e métodos próprios para eliminar meticulosamente o desbotamento, os rasgões, os rasgões, os arranhões, as goivas, os riscos e os arranhões. Em muitos casos, podemos até restaurar com êxito artigos que tenham sido danificados pelo fogo ou pela água para um estado como novo. Graças à nossa capacidade de fornecer reparações de couro, vinil, tecido e estofos de alta qualidade e um serviço ao cliente excecional, conseguimos expandir o nosso negócio em muitas direções. O nosso objetivo é exceder as expectativas dos clientes. Estamos confiantes na nossa capacidade de ressuscitar os seus artigos danificados ou envelhecidos!", image = "/images/estofoCarro.jpg" })">Estofos</a>
+                                <a class="dropdown-item" href="@Url.Action("About", "Home", new AboutViewModel {titulo = "Vidros", subtitulo = "As fissuras no pára-brisas dificultam a visão, colocam o vidro em risco de sofrer mais danos e comprometem o desempenho do seu veículo em caso de colisão. Todos estes problemas ameaçam a sua segurança e a dos seus passageiros, pelo que adiar a reparação ou substituição do pára-brisas é um risco.", description = "Oferecemos substituição de vidros para automóveis com serviço móvel gratuito na sua área. Quer se trate do pára-brisas dianteiro, do pára-brisas traseiro, da janela do condutor, da janela do passageiro ou do vidro do quarto.  Dispomos de vidro de qualidade do fabricante do equipamento original para um ajuste perfeito, serviço móvel gratuito, serviço no mesmo dia e uma garantia vitalícia nacional sobre o acabamento.", image = "/images/estofoCarro.jpg" })">Vidros</a>
+                                <a class="dropdown-item" href="@Url.Action("About", "Home", new AboutViewModel {titulo = "Pneus", subtitulo = "Pequenos desalinhamentos e danos na direcção ou na suspensão podem ser difíceis de detectar, e é por isso que ajuda ter alguém a inspeccionar o nível de danos nos pneus. Estas inspecções podem proporcionar paz de espírito e ajudá-lo a evitar reparações dispendiosas de automóveis e pneus no futuro.", description = "A nossa equipa é altamente especializada em manutenção automóvel, reparações de veículos e substituição de pneus. Iremos observar e avaliar os danos nos pneus, bem como o impacto que podem ter no seu veículo. Deixe os nossos profissionais de reparação de pneus darem uma vista de olhos. Se algo não lhe parecer bem, é provável que haja um problema.", image = "/images/pneuReparo.jpg" })">Pneus</a>
+                                <a class="dropdown-item" href="@Url.Action("About", "Home", new AboutViewModel {titulo = "Inspeção Periódica", subtitulo = "O processo de inspeção do seu veículo deve demorar cerca de uma hora a uma hora e meia.", description = "Em geral, o inspetor passará cerca de vinte minutos a inspecionar visualmente o seu veículo. Em seguida, o inspetor conduzirá o veículo durante cerca de meia hora para testar a sua segurança prática. Finalmente, os testes de emissões devem demorar apenas cerca de quinze minutos. Em geral, o inspetor passará cerca de vinte minutos a inspecionar visualmente o seu veículo. Em seguida, o inspetor conduzirá o veículo durante cerca de meia hora para testar a sua segurança prática. Finalmente, os testes de emissões devem demorar apenas cerca de quinze minutos. A manutenção de rotina consistente é o método mais fiável de garantir que o seu veículo está em condições de circular. No entanto, com tantos itens de serviço diferentes para tratar, uma inspeção é uma forma simples de verificar se tudo está em ordem.", image = "/images/inspecaoCarro.png" })">Inspeção Periódica</a>
+                                <a class="dropdown-item" href="@Url.Action("About", "Home", new AboutViewModel {titulo = "Bate-chapas", subtitulo = "", description = "Mesmo os pequenos para-choques com as mais pequenas mossas e amolgadelas são perturbadores. A situação só piora se o acidente for mais grave. Em primeiro lugar, tem de contactar a sua companhia de seguros. Em seguida, deve providenciar o aluguer de um automóvel. Depois de tudo isso, precisa de encontrar uma oficina de carroçaria de qualidade. Podemos inspecionar a extensão dos danos na carroçaria e mecânicos. Muitas vezes, existem danos subjacentes que não são visíveis. Os nossos especialistas informá-lo-ão sobre o que o seu automóvel necessita para voltar ao estado de novo. Os nossos bate-chapas e pintores têm uma vasta experiência na reparação de danos menores até reparações mais complexas.", image = "/images/bateChapas.jpg" })">Bate-chapas</a>
+                                <a class="dropdown-item" href="@Url.Action("About", "Home", new AboutViewModel {titulo = "Mecânica", subtitulo = "Os requisitos da reparação móvel de veículos perto de mim variam consoante as circunstâncias. Em algumas situações, é uma recolha e transferência básica do seu veículo, enquanto outras situações necessitarão de um reboque. Depois de efetuarmos o trabalho nas nossas instalações, devolvê-lo-emos a tempo.", description = "Se as luzes do painel de instrumentos do seu veículo não se acenderem adequadamente, é provável que o sistema elétrico esteja avariado. Outro indicador de um possível problema no sistema elétrico é se os faróis do seu veículo escurecerem quando conduz a baixa velocidade. Um técnico experiente efetuará um diagnóstico específico ao sistema elétrico do seu veículo para controlar a razão da avaria e concluir a reparação essencial. Um técnico verifica a bateria do carro, a doença, a veracidade e a reparação elétrica móvel perto de mim para verificar se esta consegue produzir energia suficiente. Se a integridade da bateria tiver colaborado, deve ser substituída. Para que a bateria, os cabos contíguos e os componentes eletrónicos sensíveis funcionem corretamente, é necessário levar um técnico para reparar o sistema elétrico do seu automóvel.", image = "/images/mecanica4.jpg" })">Mecânica</a>
+                                <a class="dropdown-item" href="@Url.Action("About", "Home", new AboutViewModel {titulo = "Eletrónica", subtitulo = "Os requisitos da reparação móvel de veículos variam consoante as circunstâncias. Em algumas situações, é uma recolha e transferência básica do seu veículo, enquanto outras situações necessitarão de um reboque. Depois de efetuarmos o trabalho nas nossas instalações, devolvê-lo-emos a tempo.", description = "Se as luzes do painel de instrumentos do seu veículo não se acenderem adequadamente, é provável que o sistema elétrico esteja avariado. Outro indicador de um possível problema no sistema elétrico é se os faróis do seu veículo escurecerem quando conduz a baixa velocidade. Um técnico experiente efetuará um diagnóstico específico ao sistema elétrico do seu veículo para controlar a razão da avaria e concluir a reparação essencial. Um técnico verifica a bateria do carro, a doença, a veracidade e a reparação elétrica móvel perto de mim para verificar se esta consegue produzir energia suficiente.", image = "/images/eletronica2.jpg" })">Eletrónica</a>
+                                <a class="dropdown-item" href="@Url.Action("About", "Home", new AboutViewModel {titulo = "Pintura", subtitulo = "Uma pintura automotiva bem feita pode fazer com que seu veículo se destaque na multidão. Quer esteja a reparar uma colisão, a renovar o seu carro antigo ou apenas a melhorar o aspecto do seu veículo favorito.", description = "Precisa apenas de um retoque na pintura? Não tem problema! A equipe da Penske Automotive Collision pode combinar perfeitamente a cor da pintura do seu carro e consertar aquelas lascas de pedra desagradáveis. Também podemos consertar a pintura rachada por meio do nosso processo de retoque de pintura. Oferecemos vários níveis de pintura, desde pintura de carroçaria completa até uma rápida actualização da pintura do seu carro antigo.", image = "/images/pintura.jpg" })">Pintura</a>
+                                <a class="dropdown-item" href="@Url.Action("About", "Home", new AboutViewModel {titulo = "Assistência de Viagem", subtitulo = "Se o seu veículo deixar de circular por motivos mecânicos ou eléctricos, será enviado para o local um assistente de avaria.", description = "Em geral, os assistentes podem resolver problemas simples, como pneus furados, depósitos vazios ou chaves trancadas no carro, no próprio local. No entanto, se o problema for mais complexo e exigir mais conhecimentos, os assistentes irão provavelmente rebocar o seu veículo para o concessionário, oficina ou estação de serviço mais próxima. Em caso de avaria e de impossibilidade de continuar a conduzir, contacte-nos.", image = "/images/assistencia2.jpg" })">Assistência de Viagem</a>
+
+                            </div>
+
+                        </li>
+                        <partial name="_LoginPartial" />
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+<!-- end header section -->
+
+        <div class="text-center">
+            <br />
+            <h1 class="text-white">Marcações</h1>
+        </div>
+
+<body onload="startTime()">
+    <div class="container2">
+        <div class="card1">
+            <div class="front1">
+                <div class="contentfront1">
+                    <div class="month1">
+                        <table>
+                            <tr class="orangeTr">
+                                <th>M</th>
+                                <th>T</th>
+                                <th>W</th>
+                                <th>T</th>
+                                <th>F</th>
+                                <th>S</th>
+                                <th>S</th>
+                            </tr>
+                            <tr class="whiteTr">
+                                <th></th>
+                                <th>1</th>
+                                <th>2</th>
+                                <th>3</th>
+                                <th>4</th>
+                                <th>5</th>
+                                <th>6</th>
+                            </tr>
+                            <tr class="whiteTr">
+                                <th>7</th>
+                                <th>8</th>
+                                <th>9</th>
+                                <th>10</th>
+                                <th>11</th>
+                                <th>12</th>
+                                <th>13</th>
+                            </tr>
+                            <tr class="whiteTr">
+                                <th>14</th>
+                                <th>15</th>
+                                <th>16</th>
+                                <th>17</th>
+                                <th>18</th>
+                                <th>19</th>
+                                <th>20</th>
+                            </tr>
+                            <tr class="whiteTr">
+                                <th>21</th>
+                                <th>22</th>
+                                <th>23</th>
+                                <th>24</th>
+                                <th>25</th>
+                                <th>26</th>
+                                <th>27</th>
+                            </tr>
+                            <tr class="whiteTr">
+                                <th>28</th>
+                                <th>29</th>
+                                <th>30</th>
+                                <th>31</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="date1">
+                        <div class="datecont">
+                            <div id="date1"></div>
+                            <div id="day1"></div>
+                            <div id="month1"></div>
+                            <i class="fa fa-pencil edit" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="back1">
+                <div class="contentback1">
+                    <div class="backcontainer1">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center" style="margin-top:30vh">
+            <button type="button" class="btn btn-outline-success">Marcar</button>
+            <button type="button" class="btn btn-outline-warning">Editar</button>
+            <button type="button" class="btn btn-outline-danger">Apagar</button>
+        </div>
+</body>
+
+<script src=~/js/site.js></script>
+
+<style>
+    body {
+        margin: 0;
+        background-color: #010712;
+        background-image: url(https://static.pexels.com/photos/1526/dark-blur-blurred-gradient.jpg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100vh;
+    }
+
+    .container2 {
+        width: 400px;
+        height: 200px;
+        position: absolute;
+        perspective: 1000;
+        -webkit-perspective: 1000;
+        left: calc(50% - 200px);
+        top: calc(50vh - 100px);
+    }
+
+    .card1 {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        transform-style: preserve-3d;
+        -webkit-transform-style: preserve-3d;
+        transition: transform 1s ease;
+        cursor: pointer;
+    }
+
+    .back1, .front1 {
+        border-radius: 6px;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        -webkit-transform-style: preserve-3d;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+    }
+
+    .contentfront1 {
+        width: 100%;
+        height: 100%;
+        float: left;
+        transform: translatez(60px);
+        -webkit-transform: translatez(60px);
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        transform-style: preserve-3d;
+        -webkit-transform-style: preserve-3d;
+    }
+
+    .contentback1 {
+        width: 100%;
+        height: 100%;
+        float: left;
+        transform: translatez(60px);
+        -webkit-transform: translatez(60px);
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        transform-style: preserve-3d;
+        -webkit-transform-style: preserve-3d;
+    }
+
+    .back1 {
+        transform: rotateY(180deg);
+        background-color: #232227;
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -o-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+
+    .front1 {
+        text-transform: uppercase;
+        background-color: #232227;
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -o-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+
+    .date1 {
+        height: 100%;
+        width: 130px;
+        float: left;
+        background-color: #E76642;
+        border-radius: 0 6px 6px 0;
+        text-align: right;
+        padding: 10px 30px;
+        box-sizing: border-box;
+        transform-style: preserve-3d;
+        -webkit-transform-style: preserve-3d;
+    }
+
+    .datecont {
+        height: 100%;
+        transform: translatez(60px) scale(.9);
+        -webkit-transform: translatez(60px) scale(.9);
+    }
+
+    #date1 {
+        font-size: 50px;
+        color: #ECECE7;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+        float: right;
+    }
+
+    #day1 {
+        float: right;
+        font-size: 14px;
+        color: #232227;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 400;
+    }
+
+    #month1 {
+        float: right;
+        font-size: 10px;
+        color: #232227;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 200;
+    }
+
+    .date1 i {
+        color: #ECECE7;
+        position: absolute;
+        bottom: 10px;
+        right: 0;
+    }
+
+        .date1 i:hover {
+            color: #232227;
+            transition: .3s ease;
+        }
+
+    .month1 {
+        height: 100%;
+        width: 270px;
+        float: left;
+        padding: 20px 30px;
+        box-sizing: border-box;
+    }
+
+        .month1 table {
+            width: 100%;
+        }
+
+    .orangeTr {
+        color: #E76642;
+    }
+
+    .whiteTr {
+        color: #ECECE7;
+    }
+
+        .whiteTr th:hover {
+            color: #E76642;
+            transition: .3s ease;
+        }
+
+    .month1 tr {
+        height: 24px;
+    }
+
+    .month1 th {
+        width: 14%;
+        font-size: 10px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 400;
+    }
+
+    .flipped {
+        transform: rotateY(-180deg);
+        /*height:400px;
+          width:200px;
+          left:calc(50% - 100px);
+          top:calc(50vh - 200px);*/
+    }
+
+    .backcontainer1 {
+        transform-style: preserve-3d;
+        width: calc(100% - 60px);
+        height: calc(100% - 40px);
+        float: left;
+        margin-left: 30px;
+        margin-top: 20px;
+        /*transform:translatez(60px) scale();*/
+
+        background-color: #E76642;
+        border-radius: 6px;
+        padding: 10px 30px;
+        box-sizing: border-box;
+        transform-style: preserve-3d;
+        -webkit-transform-style: preserve-3d;
+    }
+</style>

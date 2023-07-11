@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MVC_oficinas.Models;
 using OficinaPimpolho.Models;
 using System.Diagnostics;
 
@@ -15,18 +16,17 @@ namespace OficinaPimpolho.Controllers
 */
         public IActionResult Index()
         {
-            HomeModel home = new HomeModel();
-
-            home.Nome = "GB";
-            home.Email = "GB@gmail.com";
-
-
-            return View(home);
+            return View();
         }
 
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult About(AboutViewModel aboutViewModel)
+        {
+            return View(aboutViewModel);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
