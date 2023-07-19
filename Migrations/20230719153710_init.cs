@@ -102,7 +102,8 @@ namespace OficinaPimpolho.Migrations
                     IdServico = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Preco = table.Column<double>(type: "float", nullable: false)
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Preco = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -310,23 +311,17 @@ namespace OficinaPimpolho.Migrations
 
             migrationBuilder.InsertData(
                 table: "Servico",
-                columns: new[] { "IdServico", "Nome", "Preco" },
+                columns: new[] { "IdServico", "Image", "Nome", "Preco" },
                 values: new object[,]
                 {
-                    { 1, "Ar Condicionado", 100.0 },
-                    { 2, "Estofos", 170.0 },
-                    { 3, "Vidros", 70.0 },
-                    { 4, "Mecânica", 200.0 },
-                    { 5, "Pneus", 50.0 },
-                    { 6, "Inspeção Periódica", 50.0 },
-                    { 7, "Bate-chapas", 70.0 },
-                    { 8, "Cortesia/Mobilidade", 100.0 },
-                    { 9, "Eletricidade/Eletrónica", 150.0 },
-                    { 10, "Lavagem", 10.0 },
-                    { 11, "Pintura", 90.0 },
-                    { 12, "Tuning", 700.0 },
-                    { 13, "Assistência em Viagem", 250.0 },
-                    { 14, "GPL Auto", 40.0 }
+                    { 1, "/images/estofoCarro.jpg", "Estofos", "110€ - 600€" },
+                    { 2, "/images/vidroReparo.jpg", "Vidros", "85€ - 150€" },
+                    { 3, "/images/mecanica4.jpg", "Mecânica", "400€ - 650€" },
+                    { 4, "/images/pneuReparo.jpg", "Pneus", "100€ - 300€" },
+                    { 5, "/images/bateChapas.jpg", "Bate-chapas", "50€ - 880+€" },
+                    { 6, "/images/eletronica2.jpg", "Eletricidade/Eletrónica", "100€ - 995€" },
+                    { 7, "/images/pintura.jpg", "Pintura", "300€ - 700€" },
+                    { 8, "/images/assistencia2.jpg", "Assistência em Viagem", "30€ - 60€" }
                 });
 
             migrationBuilder.CreateIndex(

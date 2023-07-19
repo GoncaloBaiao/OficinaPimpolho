@@ -20,8 +20,10 @@ namespace OficinaPimpolho.Models
         [Display(Name = "Nome")]
         public string Nome { get; set; }
 
+        public string Image { get; set; }
+
         [Required]
-        public double Preco { get; set; }
+        public string Preco { get; set; }
 
         /// <summary>
         /// Lista de Serviços

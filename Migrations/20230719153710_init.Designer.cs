@@ -12,7 +12,7 @@ using OficinaPimpolho.Data;
 namespace OficinaPimpolho.Migrations
 {
     [DbContext(typeof(OficinaPimpolhoContext))]
-    [Migration("20230711162755_init")]
+    [Migration("20230719153710_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -459,14 +459,19 @@ namespace OficinaPimpolho.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdServico"), 1L, 1);
 
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Nome");
 
-                    b.Property<double>("Preco")
-                        .HasColumnType("float");
+                    b.Property<string>("Preco")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdServico");
 
@@ -476,86 +481,58 @@ namespace OficinaPimpolho.Migrations
                         new
                         {
                             IdServico = 1,
-                            Nome = "Ar Condicionado",
-                            Preco = 100.0
+                            Image = "/images/estofoCarro.jpg",
+                            Nome = "Estofos",
+                            Preco = "110€ - 600€"
                         },
                         new
                         {
                             IdServico = 2,
-                            Nome = "Estofos",
-                            Preco = 170.0
+                            Image = "/images/vidroReparo.jpg",
+                            Nome = "Vidros",
+                            Preco = "85€ - 150€"
                         },
                         new
                         {
                             IdServico = 3,
-                            Nome = "Vidros",
-                            Preco = 70.0
+                            Image = "/images/mecanica4.jpg",
+                            Nome = "Mecânica",
+                            Preco = "400€ - 650€"
                         },
                         new
                         {
                             IdServico = 4,
-                            Nome = "Mecânica",
-                            Preco = 200.0
+                            Image = "/images/pneuReparo.jpg",
+                            Nome = "Pneus",
+                            Preco = "100€ - 300€"
                         },
                         new
                         {
                             IdServico = 5,
-                            Nome = "Pneus",
-                            Preco = 50.0
+                            Image = "/images/bateChapas.jpg",
+                            Nome = "Bate-chapas",
+                            Preco = "50€ - 880+€"
                         },
                         new
                         {
                             IdServico = 6,
-                            Nome = "Inspeção Periódica",
-                            Preco = 50.0
+                            Image = "/images/eletronica2.jpg",
+                            Nome = "Eletricidade/Eletrónica",
+                            Preco = "100€ - 995€"
                         },
                         new
                         {
                             IdServico = 7,
-                            Nome = "Bate-chapas",
-                            Preco = 70.0
+                            Image = "/images/pintura.jpg",
+                            Nome = "Pintura",
+                            Preco = "300€ - 700€"
                         },
                         new
                         {
                             IdServico = 8,
-                            Nome = "Cortesia/Mobilidade",
-                            Preco = 100.0
-                        },
-                        new
-                        {
-                            IdServico = 9,
-                            Nome = "Eletricidade/Eletrónica",
-                            Preco = 150.0
-                        },
-                        new
-                        {
-                            IdServico = 10,
-                            Nome = "Lavagem",
-                            Preco = 10.0
-                        },
-                        new
-                        {
-                            IdServico = 11,
-                            Nome = "Pintura",
-                            Preco = 90.0
-                        },
-                        new
-                        {
-                            IdServico = 12,
-                            Nome = "Tuning",
-                            Preco = 700.0
-                        },
-                        new
-                        {
-                            IdServico = 13,
+                            Image = "/images/assistencia2.jpg",
                             Nome = "Assistência em Viagem",
-                            Preco = 250.0
-                        },
-                        new
-                        {
-                            IdServico = 14,
-                            Nome = "GPL Auto",
-                            Preco = 40.0
+                            Preco = "30€ - 60€"
                         });
                 });
 

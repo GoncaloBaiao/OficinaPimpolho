@@ -41,20 +41,14 @@ public class OficinaPimpolhoContext : IdentityDbContext<IdentityUser>
             .HasForeignKey(cd => cd.ServicoId);
 
         builder.Entity<Servico>().HasData(
-                new Servico { IdServico = 1, Preco = 100.00, Nome = "Ar Condicionado" },
-                new Servico { IdServico = 2, Preco = 170.00, Nome = "Estofos" },
-                new Servico { IdServico = 3, Preco = 70.00, Nome = "Vidros" },
-                new Servico { IdServico = 4, Preco = 200.00, Nome = "Mecânica" },
-                new Servico { IdServico = 5, Preco = 50.00, Nome = "Pneus" },
-                new Servico { IdServico = 6, Preco = 50.00, Nome = "Inspeção Periódica" },
-                new Servico { IdServico = 7, Preco = 70.00, Nome = "Bate-chapas" },
-                new Servico { IdServico = 8, Preco = 100.00, Nome = "Cortesia/Mobilidade" },
-                new Servico { IdServico = 9, Preco = 150.00, Nome = "Eletricidade/Eletrónica" },
-                new Servico { IdServico = 10, Preco = 10.00, Nome = "Lavagem" },
-                new Servico { IdServico = 11, Preco = 90.00, Nome = "Pintura" },
-                new Servico { IdServico = 12, Preco = 700.00, Nome = "Tuning" },
-                new Servico { IdServico = 13, Preco = 250.00, Nome = "Assistência em Viagem" },
-                new Servico { IdServico = 14, Preco = 40.00, Nome = "GPL Auto" }
+                new Servico { IdServico = 1, Preco = "110€ - 600€", Nome = "Estofos", Image= "/images/estofoCarro.jpg" },
+                new Servico { IdServico = 2, Preco = "85€ - 150€", Nome = "Vidros", Image = "/images/vidroReparo.jpg" },
+                new Servico { IdServico = 3, Preco = "400€ - 650€", Nome = "Mecânica", Image = "/images/mecanica4.jpg" },
+                new Servico { IdServico = 4, Preco = "100€ - 300€", Nome = "Pneus", Image = "/images/pneuReparo.jpg" },
+                new Servico { IdServico = 5, Preco = "50€ - 880+€", Nome = "Bate-chapas", Image = "/images/bateChapas.jpg" },
+                new Servico { IdServico = 6, Preco = "100€ - 995€", Nome = "Eletricidade/Eletrónica", Image = "/images/eletronica2.jpg" },
+                new Servico { IdServico = 7, Preco = "300€ - 700€", Nome = "Pintura", Image = "/images/pintura.jpg" },
+                new Servico { IdServico = 8, Preco = "30€ - 60€", Nome = "Assistência em Viagem", Image = "/images/assistencia2.jpg" }
                      );
         var listaOficinas = new List<Oficina> {
         new Oficina { IdOficina = 1, Nome = "JaquimOficina", Localidade = "Pinhal Novo", CodigoPostal = "1955-276", NumTelemovel="911111111"},

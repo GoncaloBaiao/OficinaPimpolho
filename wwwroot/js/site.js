@@ -2,6 +2,8 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+
+// begin marcações
 let cardElement = document.querySelector(".card1");
 
 cardElement.addEventListener("click", flip);
@@ -56,3 +58,4 @@ function checkTime(i) {
     if (i < 10) { i = "0" + i };
     return i;
 }
+// end marcaçoes
