@@ -41,6 +41,9 @@ namespace OficinaPimpolho.Models
         [Display(Name = "Telemóvel")]
         public string NumTelemovel { get; set; }
 
+        public string Image { get; set; }
+
+
         /// <summary>
         ///  Serviços da Oficina
         /// </summary>

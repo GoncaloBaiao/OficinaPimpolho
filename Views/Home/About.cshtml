@@ -1,11 +1,16 @@
 ﻿@using MVC_oficinas.Models
 @model AboutViewModel
 
+@{
+    ViewData["Title"] = "Página do serviço";
+}
+    <!-- Custom styles for this template -->
+    <link href="/css/style.css" rel="stylesheet" />
      <!-- about section -->
 
   <section class="about_section layout_padding">
     <div class="container">
-      <div class="row">
+      <div class="row" style="display:flex; align-items:center;">
         <div class="col-md-6">
           <div class="detail-box">
             <div class="heading_container">
@@ -29,5 +34,9 @@
         </div>
       </div>
     </div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin-top:10px;">
+    <a class="btn btn-outline-info" role="button" asp-controller="Home" asp-action="Index" style="color:darkblue;">Voltar ao menu</a>
+</div>
   </section>
    <!-- end about section -->

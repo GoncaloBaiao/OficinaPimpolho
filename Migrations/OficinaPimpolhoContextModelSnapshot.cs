@@ -388,6 +388,10 @@ namespace OficinaPimpolho.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Localidade")
                         .IsRequired()
                         .HasMaxLength(30)
@@ -411,26 +415,110 @@ namespace OficinaPimpolho.Migrations
                         new
                         {
                             IdOficina = 1,
-                            CodigoPostal = "1955-276",
-                            Localidade = "Pinhal Novo",
-                            Nome = "JaquimOficina",
+                            CodigoPostal = "2835-276",
+                            Image = "/images/id1_boxcarvulcolisboa.jpg",
+                            Localidade = "Setúbal",
+                            Nome = "Auto Moderna",
                             NumTelemovel = "911111111"
                         },
                         new
                         {
                             IdOficina = 2,
-                            CodigoPostal = "9754-476",
-                            Localidade = "Castelo de paiva",
-                            Nome = "PimpolhoOficina",
+                            CodigoPostal = "8500-476",
+                            Image = "/images/id10.jpg",
+                            Localidade = "Faro",
+                            Nome = "Cuidado Carro",
                             NumTelemovel = "911111112"
                         },
                         new
                         {
                             IdOficina = 3,
-                            CodigoPostal = "7985-815",
-                            Localidade = "Marco de Canaveses",
-                            Nome = "DJ8Oficina",
+                            CodigoPostal = "7600-476",
+                            Image = "/images/id11_corvauto.jpg",
+                            Localidade = "Beja",
+                            Nome = "Espaço Car",
                             NumTelemovel = "911111113"
+                        },
+                        new
+                        {
+                            IdOficina = 4,
+                            CodigoPostal = "2140-476",
+                            Image = "/images/id12.jpg",
+                            Localidade = "Santarém",
+                            Nome = "Esquina da Revisão",
+                            NumTelemovel = "911111114"
+                        },
+                        new
+                        {
+                            IdOficina = 5,
+                            CodigoPostal = "4560-476",
+                            Image = "/images/id13_rinoauto.jpg",
+                            Localidade = "Porto",
+                            Nome = "Império Car",
+                            NumTelemovel = "911111115"
+                        },
+                        new
+                        {
+                            IdOficina = 6,
+                            CodigoPostal = "9754-476",
+                            Image = "/images/id2_braga.jpg",
+                            Localidade = "Vila Nova de Gaia",
+                            Nome = "Mecânica Vila",
+                            NumTelemovel = "911111116"
+                        },
+                        new
+                        {
+                            IdOficina = 7,
+                            CodigoPostal = "2695-476",
+                            Image = "/images/id3_autoarcadgua2.jpg",
+                            Localidade = "Lisboa",
+                            Nome = "Mundo dos Carros",
+                            NumTelemovel = "911111117"
+                        },
+                        new
+                        {
+                            IdOficina = 8,
+                            CodigoPostal = "6290-476",
+                            Image = "/images/id4.jpg",
+                            Localidade = "Guarda",
+                            Nome = "Prime Car",
+                            NumTelemovel = "911111118"
+                        },
+                        new
+                        {
+                            IdOficina = 9,
+                            CodigoPostal = "3780-476",
+                            Image = "/images/id6_meiricarro.jpg",
+                            Localidade = "Aveiro",
+                            Nome = "SOS Car",
+                            NumTelemovel = "911111119"
+                        },
+                        new
+                        {
+                            IdOficina = 10,
+                            CodigoPostal = "4740-476",
+                            Image = "/images/id7_automotor.jpg",
+                            Localidade = "Braga",
+                            Nome = "Rei da mecânica",
+                            NumTelemovel = "911111120"
+                        },
+                        new
+                        {
+                            IdOficina = 11,
+                            CodigoPostal = "3450-476",
+                            Image = "/images/id8.jpg",
+                            Localidade = "Viseu",
+                            Nome = "Pit Stop",
+                            NumTelemovel = "911111121"
+                        },
+                        new
+                        {
+                            IdOficina = 12,
+                            CodigoPostal = "5300-815",
+                            Image = "/images/id9_martinho.jpg",
+                            Localidade = "Bragança",
+                            Nome = "Revisa Car",
+                            NumTelemovel = "911111122"
                         });
                 });
 
