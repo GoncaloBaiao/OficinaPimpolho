@@ -2,7 +2,7 @@
 @model MarcacaoViewModel
 @{
     ViewData["Title"] = "Lista de contatos";
-    Layout = null;
+
 }
 
 <meta charset="utf-8" />
@@ -16,460 +16,886 @@
 <link href="/css/style.css" rel="stylesheet" />
 <!-- responsive style -->
 <link href="/css/responsive.css" rel="stylesheet" />
+<!-- JavaScript -->
+<script src="/js/site.js"></script>
 
-<!-- header section strats -->
-<header class="header_section">
-    <div class="container">
-        <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
-            <a class="navbar-brand mr-5" asp-controller="Home" asp-action="Index">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
 
-                <span>
-                    AGENDACAR
-                </span>
-            </a>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
-                    <ul class="navbar-nav  ">
-                        <li class="nav-item">
-                            <a class="navbar-brand mr-5 text-white" asp-controller="Marcacoes" asp-action="Index">MARCAÇÕES</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="navbar-brand mr-5 text-white" asp-controller="Contato" asp-action="Index">OFICINAS</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                SERVIÇOS DE REPARAÇÃO
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="@Url.Action("About", "Home", new AboutViewModel {titulo = "Estofos", subtitulo = "A nossa equipa de técnicos de reparação de mobiliário e de pele móvel utiliza a tecnologia e as técnicas mais avançadas e precisas da indústria para revitalizar os seus artigos danificados.", description = "Utiliza ferramentas e métodos próprios para eliminar meticulosamente o desbotamento, os rasgões, os rasgões, os arranhões, as goivas, os riscos e os arranhões. Em muitos casos, podemos até restaurar com êxito artigos que tenham sido danificados pelo fogo ou pela água para um estado como novo. Graças à nossa capacidade de fornecer reparações de couro, vinil, tecido e estofos de alta qualidade e um serviço ao cliente excecional, conseguimos expandir o nosso negócio em muitas direções. O nosso objetivo é exceder as expectativas dos clientes. Estamos confiantes na nossa capacidade de ressuscitar os seus artigos danificados ou envelhecidos!", image = "/images/estofoCarro.jpg" })">Estofos</a>
-                                <a class="dropdown-item" href="@Url.Action("About", "Home", new AboutViewModel {titulo = "Vidros", subtitulo = "As fissuras no pára-brisas dificultam a visão, colocam o vidro em risco de sofrer mais danos e comprometem o desempenho do seu veículo em caso de colisão. Todos estes problemas ameaçam a sua segurança e a dos seus passageiros, pelo que adiar a reparação ou substituição do pára-brisas é um risco.", description = "Oferecemos substituição de vidros para automóveis com serviço móvel gratuito na sua área. Quer se trate do pára-brisas dianteiro, do pára-brisas traseiro, da janela do condutor, da janela do passageiro ou do vidro do quarto.  Dispomos de vidro de qualidade do fabricante do equipamento original para um ajuste perfeito, serviço móvel gratuito, serviço no mesmo dia e uma garantia vitalícia nacional sobre o acabamento.", image = "/images/estofoCarro.jpg" })">Vidros</a>
-                                <a class="dropdown-item" href="@Url.Action("About", "Home", new AboutViewModel {titulo = "Pneus", subtitulo = "Pequenos desalinhamentos e danos na direcção ou na suspensão podem ser difíceis de detectar, e é por isso que ajuda ter alguém a inspeccionar o nível de danos nos pneus. Estas inspecções podem proporcionar paz de espírito e ajudá-lo a evitar reparações dispendiosas de automóveis e pneus no futuro.", description = "A nossa equipa é altamente especializada em manutenção automóvel, reparações de veículos e substituição de pneus. Iremos observar e avaliar os danos nos pneus, bem como o impacto que podem ter no seu veículo. Deixe os nossos profissionais de reparação de pneus darem uma vista de olhos. Se algo não lhe parecer bem, é provável que haja um problema.", image = "/images/pneuReparo.jpg" })">Pneus</a>
-                                <a class="dropdown-item" href="@Url.Action("About", "Home", new AboutViewModel {titulo = "Inspeção Periódica", subtitulo = "O processo de inspeção do seu veículo deve demorar cerca de uma hora a uma hora e meia.", description = "Em geral, o inspetor passará cerca de vinte minutos a inspecionar visualmente o seu veículo. Em seguida, o inspetor conduzirá o veículo durante cerca de meia hora para testar a sua segurança prática. Finalmente, os testes de emissões devem demorar apenas cerca de quinze minutos. Em geral, o inspetor passará cerca de vinte minutos a inspecionar visualmente o seu veículo. Em seguida, o inspetor conduzirá o veículo durante cerca de meia hora para testar a sua segurança prática. Finalmente, os testes de emissões devem demorar apenas cerca de quinze minutos. A manutenção de rotina consistente é o método mais fiável de garantir que o seu veículo está em condições de circular. No entanto, com tantos itens de serviço diferentes para tratar, uma inspeção é uma forma simples de verificar se tudo está em ordem.", image = "/images/inspecaoCarro.png" })">Inspeção Periódica</a>
-                                <a class="dropdown-item" href="@Url.Action("About", "Home", new AboutViewModel {titulo = "Bate-chapas", subtitulo = "", description = "Mesmo os pequenos para-choques com as mais pequenas mossas e amolgadelas são perturbadores. A situação só piora se o acidente for mais grave. Em primeiro lugar, tem de contactar a sua companhia de seguros. Em seguida, deve providenciar o aluguer de um automóvel. Depois de tudo isso, precisa de encontrar uma oficina de carroçaria de qualidade. Podemos inspecionar a extensão dos danos na carroçaria e mecânicos. Muitas vezes, existem danos subjacentes que não são visíveis. Os nossos especialistas informá-lo-ão sobre o que o seu automóvel necessita para voltar ao estado de novo. Os nossos bate-chapas e pintores têm uma vasta experiência na reparação de danos menores até reparações mais complexas.", image = "/images/bateChapas.jpg" })">Bate-chapas</a>
-                                <a class="dropdown-item" href="@Url.Action("About", "Home", new AboutViewModel {titulo = "Mecânica", subtitulo = "Os requisitos da reparação móvel de veículos perto de mim variam consoante as circunstâncias. Em algumas situações, é uma recolha e transferência básica do seu veículo, enquanto outras situações necessitarão de um reboque. Depois de efetuarmos o trabalho nas nossas instalações, devolvê-lo-emos a tempo.", description = "Se as luzes do painel de instrumentos do seu veículo não se acenderem adequadamente, é provável que o sistema elétrico esteja avariado. Outro indicador de um possível problema no sistema elétrico é se os faróis do seu veículo escurecerem quando conduz a baixa velocidade. Um técnico experiente efetuará um diagnóstico específico ao sistema elétrico do seu veículo para controlar a razão da avaria e concluir a reparação essencial. Um técnico verifica a bateria do carro, a doença, a veracidade e a reparação elétrica móvel perto de mim para verificar se esta consegue produzir energia suficiente. Se a integridade da bateria tiver colaborado, deve ser substituída. Para que a bateria, os cabos contíguos e os componentes eletrónicos sensíveis funcionem corretamente, é necessário levar um técnico para reparar o sistema elétrico do seu automóvel.", image = "/images/mecanica4.jpg" })">Mecânica</a>
-                                <a class="dropdown-item" href="@Url.Action("About", "Home", new AboutViewModel {titulo = "Eletrónica", subtitulo = "Os requisitos da reparação móvel de veículos variam consoante as circunstâncias. Em algumas situações, é uma recolha e transferência básica do seu veículo, enquanto outras situações necessitarão de um reboque. Depois de efetuarmos o trabalho nas nossas instalações, devolvê-lo-emos a tempo.", description = "Se as luzes do painel de instrumentos do seu veículo não se acenderem adequadamente, é provável que o sistema elétrico esteja avariado. Outro indicador de um possível problema no sistema elétrico é se os faróis do seu veículo escurecerem quando conduz a baixa velocidade. Um técnico experiente efetuará um diagnóstico específico ao sistema elétrico do seu veículo para controlar a razão da avaria e concluir a reparação essencial. Um técnico verifica a bateria do carro, a doença, a veracidade e a reparação elétrica móvel perto de mim para verificar se esta consegue produzir energia suficiente.", image = "/images/eletronica2.jpg" })">Eletrónica</a>
-                                <a class="dropdown-item" href="@Url.Action("About", "Home", new AboutViewModel {titulo = "Pintura", subtitulo = "Uma pintura automotiva bem feita pode fazer com que seu veículo se destaque na multidão. Quer esteja a reparar uma colisão, a renovar o seu carro antigo ou apenas a melhorar o aspecto do seu veículo favorito.", description = "Precisa apenas de um retoque na pintura? Não tem problema! A equipe da Penske Automotive Collision pode combinar perfeitamente a cor da pintura do seu carro e consertar aquelas lascas de pedra desagradáveis. Também podemos consertar a pintura rachada por meio do nosso processo de retoque de pintura. Oferecemos vários níveis de pintura, desde pintura de carroçaria completa até uma rápida actualização da pintura do seu carro antigo.", image = "/images/pintura.jpg" })">Pintura</a>
-                                <a class="dropdown-item" href="@Url.Action("About", "Home", new AboutViewModel {titulo = "Assistência de Viagem", subtitulo = "Se o seu veículo deixar de circular por motivos mecânicos ou eléctricos, será enviado para o local um assistente de avaria.", description = "Em geral, os assistentes podem resolver problemas simples, como pneus furados, depósitos vazios ou chaves trancadas no carro, no próprio local. No entanto, se o problema for mais complexo e exigir mais conhecimentos, os assistentes irão provavelmente rebocar o seu veículo para o concessionário, oficina ou estação de serviço mais próxima. Em caso de avaria e de impossibilidade de continuar a conduzir, contacte-nos.", image = "/images/assistencia2.jpg" })">Assistência de Viagem</a>
-
-                            </div>
-
-                        </li>
-                        <partial name="_LoginPartial" />
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
-</header>
-<!-- end header section -->
 
 <div class="text-center">
     <br />
     <h1 class="text-white">Marcações</h1>
 </div>
 
-<body onload="startTime()">
-    <div class="container2">
-        <div class="card1">
-            <div class="front1">
-                <div class="contentfront1">
-                    <div class="month1">
-                        <table>
-                            <tr class="orangeTr">
-                                <th>M</th>
-                                <th>T</th>
-                                <th>W</th>
-                                <th>T</th>
-                                <th>F</th>
-                                <th>S</th>
-                                <th>S</th>
-                            </tr>
-                            <tr class="whiteTr">
-                                <th></th>
-                                <th>1</th>
-                                <th>2</th>
-                                <th>3</th>
-                                <th>4</th>
-                                <th>5</th>
-                                <th>6</th>
-                            </tr>
-                            <tr class="whiteTr">
-                                <th>7</th>
-                                <th>8</th>
-                                <th>9</th>
-                                <th>10</th>
-                                <th>11</th>
-                                <th>12</th>
-                                <th>13</th>
-                            </tr>
-                            <tr class="whiteTr">
-                                <th>14</th>
-                                <th>15</th>
-                                <th>16</th>
-                                <th>17</th>
-                                <th>18</th>
-                                <th>19</th>
-                                <th>20</th>
-                            </tr>
-                            <tr class="whiteTr">
-                                <th>21</th>
-                                <th>22</th>
-                                <th>23</th>
-                                <th>24</th>
-                                <th>25</th>
-                                <th>26</th>
-                                <th>27</th>
-                            </tr>
-                            <tr class="whiteTr">
-                                <th>28</th>
-                                <th>29</th>
-                                <th>30</th>
-                                <th>31</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="date1">
-                        <div class="datecont">
-                            <div id="date1"></div>
-                            <div id="day1"></div>
-                            <div id="month1"></div>
-                            <i class="fa fa-pencil edit" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="back1">
-                <div class="contentback1">
-                    <div class="backcontainer1">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="text-center" style="margin-top:30vh">
-            <form asp-controller="Marcacoes" asp-action="Criar" method="post" id="criar_marcacao">
-                <input asp-for="Marcacao.IdMarcacao" type="hidden" />
-                <input type="date" asp-for="Marcacao.DataMarcacao" />
-                <input type="text" asp-for="Marcacao.Nome" id="nome_marcacao" />
-                <input asp-for="Marcacao.Preco" type="hidden" />
-           
-                    <div class="">
-                    @foreach(var serv in Model.Serviços)
-                    {
-                        <input type="checkbox" class="btn-check checkbox-input-servico" id="@serv.IdServico"  autocomplete="off">
-                        <label class="btn btn-outline-primary" for="@serv.IdServico">@serv.Nome</label>
-                    }
-                    </div>
-                   
-                <button class="btn btn-outline-success" type="submit">Fazer marcação</button>
-            </form>
+<div style="display:flex;">
+    <div id="calendar"></div>
+
+    <h1>Ola mundo</h1>
 
 
-        </div>
+</div>
 
-        <div class="text-center">
-            <br />
-            <table class="table text-white" style="margin-left:-100px">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Preço</th>
-                        <th scope="col">Data da marcação</th>
-                        <th scope="col">Serviços</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
 
-                    @foreach (var item in Model.MarcacaoList)
-                    {
-                        <tr>
-                            <th scope="row">@item.</th>
-                            <td>@item.Nome</td>
-                            <td>@item.Preco</td>
-                            <td>@item.DataMarcacao</td>
 
-                            <td>
-                                <div class="btn-group" role="group">
-                                    <a role="button" asp-controller="Contato" asp-route-id="@item.IdMarcacao" asp-action="Editar" class="btn btn-primary">Editar</a>
-                                    <a role="button" class="btn btn-danger" asp-route-id="@item.IdMarcacao" asp-controller="Contato" asp-action="ApagarConfirmacao">Apagar</a>
-                                </div>
-                            </td>
-                        </tr>
-                    }
 
-                </tbody>
-            </table>
-        </div>
-
-</body>
-@*
 <script>
+                !function() {
 
-    var elems = document.getElementsByClassName("checkbox-input-servico")
+              var today = moment();
 
-    var marcacao = {
-                IdMarcacao = 299,
-                Nome = document.getElementById("nome_marcacao"),
-                DataMarcacao = document.getElementById("DataMarcacao"),
-                Preco = 0.0
-                MarcacaoServico= ids
-            }
+              function handleDaySelection(dayElement) {
+          // Remove any existing selected day class
+          var selectedDay = document.querySelector('.selected');
+          if (selectedDay) {
+            selectedDay.classList.remove('selected');
+          }
 
-    var form = document.getElementById("criar_marcacao")
-    form.addEventListener("submit",(e) => {
-        e.preventDefault();
-        
-        fetch("/Marcacoes/Criar", {
-            method: 'POST',
-            headers:{
-                'Content-Type': 'multipart/form-data'
-            },
-            body: JSON.stringify(marcacao)
-        }).then(response => response.json())
-            .then((data) => {
-                console.log({data})
-            })
-            .catch(error => console.error('Unable to add item.', error));
+          // Add selected class to the clicked day
+          dayElement.classList.add('selected');
 
-    })
-    //function showChecked() {
-    //    var ids = []
-    //    for (var i = 0; i < elems.length; i++) {
-    //        if (elems[i].checked) {
-    //            ids.push(elems[i].id)
-    //           // console.log("checked" + elems[i].id)
-    //        }
-    //    }
+          // Now you can access the selected day's information and perform actions
+          var dayNumber = +dayElement.querySelector('.day-number').textContent;
+          var selectedDayDate = calendar.current.clone().date(dayNumber);
+
+          // Do something with the selected day's date, like displaying events or taking actions
+          // For example:
+          console.log('Selected date:', selectedDayDate.format('YYYY-MM-DD'));
+        }
+
+              function Calendar(selector, events) {
+                this.el = document.querySelector(selector);
+                this.events = events;
+                this.current = moment().date(1);
+                this.draw();
+                var current = document.querySelector('.today');
+                if(current) {
+                  var self = this;
+                  window.setTimeout(function() {
+                    self.openDay(current);
+                  }, 500);
+                }
+              }
+
+              Calendar.prototype.draw = function() {
+                //Create Header
+                this.drawHeader();
+
+                //Draw Month
+                this.drawMonth();
+
+                this.drawLegend();
+              }
+
+              Calendar.prototype.drawHeader = function() {
+                var self = this;
+                if(!this.header) {
+                  //Create the header elements
+                  this.header = createElement('div', 'header');
+                  this.header.className = 'header';
+
+                  this.title = createElement('h1');
+
+                  var right = createElement('div', 'right');
+                  right.addEventListener('click', function() { self.nextMonth(); });
+
+                  var left = createElement('div', 'left');
+                  left.addEventListener('click', function() { self.prevMonth(); });
+
+                  //Append the Elements
+                  this.header.appendChild(this.title);
+                  this.header.appendChild(right);
+                  this.header.appendChild(left);
+                  this.el.appendChild(this.header);
+                }
+
+                this.title.innerHTML = this.current.format('MMMM YYYY');
+              }
+
+              Calendar.prototype.drawMonth = function() {
+                var self = this;
+
+                this.events.forEach(function(ev) {
+      ev.date = self.current.clone().date(Math.random() * (29 - 1) + 1);
+    });
+
+                if(this.month) {
+                  this.oldMonth = this.month;
+                  this.oldMonth.className = 'month out ' + (self.next ? 'next' : 'prev');
+                  this.oldMonth.addEventListener('webkitAnimationEnd', function() {
+                    self.oldMonth.parentNode.removeChild(self.oldMonth);
+                    self.month = createElement('div', 'month');
+                    self.backFill();
+                    self.currentMonth();
+                    self.fowardFill();
+                    self.el.appendChild(self.month);
+                    window.setTimeout(function() {
+                      self.month.className = 'month in ' + (self.next ? 'next' : 'prev');
+                    }, 16);
+                  });
+                } else {
+                    this.month = createElement('div', 'month');
+                    this.el.appendChild(this.month);
+                    this.backFill();
+                    this.currentMonth();
+                    this.fowardFill();
+                    this.month.className = 'month new';
+                }
+              }
+
+              Calendar.prototype.backFill = function() {
+                var clone = this.current.clone();
+                var dayOfWeek = clone.day();
+
+                if(!dayOfWeek) { return; }
+
+                clone.subtract('days', dayOfWeek+1);
+
+                for(var i = dayOfWeek; i > 0 ; i--) {
+                  this.drawDay(clone.add('days', 1));
+                }
+              }
+
+              Calendar.prototype.fowardFill = function() {
+                var clone = this.current.clone().add('months', 1).subtract('days', 1);
+                var dayOfWeek = clone.day();
+
+                if(dayOfWeek === 6) { return; }
+
+                for(var i = dayOfWeek; i < 6 ; i++) {
+                  this.drawDay(clone.add('days', 1));
+                }
+              }
+
+              Calendar.prototype.currentMonth = function() {
+                var clone = this.current.clone();
+
+                while(clone.month() === this.current.month()) {
+                  this.drawDay(clone);
+                  clone.add('days', 1);
+                }
+              }
+
+              Calendar.prototype.getWeek = function(day) {
+                if(!this.week || day.day() === 0) {
+                  this.week = createElement('div', 'week');
+                  this.month.appendChild(this.week);
+                }
+              }
+
+              Calendar.prototype.drawDay = function(day) {
+      var self = this;
+      this.getWeek(day);
+
+      // Outer Day
+      var outer = createElement('div', this.getDayClass(day));
+      outer.addEventListener('click', function() {
+        self.openDay(this);
+      });
+
+      // Day Name
+      var name = createElement('div', 'day-name', day.format('ddd'));
+
+      // Day Number
+      var number = createElement('div', 'day-number', day.format('DD'));
+
+      // Events
+      var events = createElement('div', 'day-events');
+      this.drawEvents(day, events);
+
+      outer.appendChild(name);
+      outer.appendChild(number);
+      outer.appendChild(events);
+      this.week.appendChild(outer);
+    }
+
+    Calendar.prototype.drawEvents = function(day, element) {
+      var self = this;
+
+      this.events.forEach(function(ev) {
+        if (ev.date.isSame(day, 'day')) {
+          var evSpan = createElement('span', ev.color);
+          element.appendChild(evSpan);
+        }
+      });
+    }
+
+              Calendar.prototype.getDayClass = function(day) {
+                classes = ['day'];
+                if(day.month() !== this.current.month()) {
+                  classes.push('other');
+                } else if (today.isSame(day, 'day')) {
+                  classes.push('today');
+                }
+                return classes.join(' ');
+              }
+
+              Calendar.prototype.openDay = function(el) {
+                var details, arrow;
+                var dayNumber = +el.querySelectorAll('.day-number')[0].innerText || +el.querySelectorAll('.day-number')[0].textContent;
+                var day = this.current.clone().date(dayNumber);
+
+                var currentOpened = document.querySelector('.details');
+
+                //Check to see if there is an open detais box on the current row
+                if(currentOpened && currentOpened.parentNode === el.parentNode) {
+                  details = currentOpened;
+                  arrow = document.querySelector('.arrow');
+                } else {
+                  //Close the open events on differnt week row
+                  //currentOpened && currentOpened.parentNode.removeChild(currentOpened);
+                  if(currentOpened) {
+                    currentOpened.addEventListener('webkitAnimationEnd', function() {
+                      currentOpened.parentNode.removeChild(currentOpened);
+                    });
+                    currentOpened.addEventListener('oanimationend', function() {
+                      currentOpened.parentNode.removeChild(currentOpened);
+                    });
+                    currentOpened.addEventListener('msAnimationEnd', function() {
+                      currentOpened.parentNode.removeChild(currentOpened);
+                    });
+                    currentOpened.addEventListener('animationend', function() {
+                      currentOpened.parentNode.removeChild(currentOpened);
+                    });
+                    currentOpened.className = 'details out';
+                  }
+
+                  //Create the Details Container
+                  details = createElement('div', 'details in');
+
+                  //Create the arrow
+                  var arrow = createElement('div', 'arrow');
+
+                  //Create the event wrapper
+
+                  details.appendChild(arrow);
+                  el.parentNode.appendChild(details);
+                }
+
+                var todaysEvents = this.events.reduce(function(memo, ev) {
+                  if(ev.date.isSame(day, 'day')) {
+                    memo.push(ev);
+                  }
+                  return memo;
+                }, []);
+
+                this.renderEvents(todaysEvents, details);
+
+                arrow.style.left = el.offsetLeft - el.parentNode.offsetLeft + 27 + 'px';
+              }
+
+              Calendar.prototype.renderEvents = function(events, ele) {
+                //Remove any events in the current details element
+                var currentWrapper = ele.querySelector('.events');
+                var wrapper = createElement('div', 'events in' + (currentWrapper ? ' new' : ''));
+
+                events.forEach(function(ev) {
+                  var div = createElement('div', 'event');
+                  var square = createElement('div', 'event-category ' + ev.color);
+                  var span = createElement('span', '', ev.eventName);
+
+                  div.appendChild(square);
+                  div.appendChild(span);
+                  wrapper.appendChild(div);
+                });
+
+                if(!events.length) {
+                  var div = createElement('div', 'event empty');
+                  var span = createElement('span', '', 'No Events');
+
+                  div.appendChild(span);
+                  wrapper.appendChild(div);
+                }
+
+                if(currentWrapper) {
+                  currentWrapper.className = 'events out';
+                  currentWrapper.addEventListener('webkitAnimationEnd', function() {
+                    currentWrapper.parentNode.removeChild(currentWrapper);
+                    ele.appendChild(wrapper);
+                  });
+                  currentWrapper.addEventListener('oanimationend', function() {
+                    currentWrapper.parentNode.removeChild(currentWrapper);
+                    ele.appendChild(wrapper);
+                  });
+                  currentWrapper.addEventListener('msAnimationEnd', function() {
+                    currentWrapper.parentNode.removeChild(currentWrapper);
+                    ele.appendChild(wrapper);
+                  });
+                  currentWrapper.addEventListener('animationend', function() {
+                    currentWrapper.parentNode.removeChild(currentWrapper);
+                    ele.appendChild(wrapper);
+                  });
+                } else {
+                  ele.appendChild(wrapper);
+                }
+              }
+
+              Calendar.prototype.drawLegend = function() {
+                var legend = createElement('div', 'legend');
+                var calendars = this.events.map(function(e) {
+                  return e.calendar + '|' + e.color;
+                }).reduce(function(memo, e) {
+                  if(memo.indexOf(e) === -1) {
+                    memo.push(e);
+                  }
+                  return memo;
+                }, []).forEach(function(e) {
+                  var parts = e.split('|');
+                  var entry = createElement('span', 'entry ' +  parts[1], parts[0]);
+                  legend.appendChild(entry);
+                });
+                this.el.appendChild(legend);
+              }
+
+              Calendar.prototype.nextMonth = function() {
+                this.current.add('months', 1);
+                this.next = true;
+                this.draw();
+              }
+
+              Calendar.prototype.prevMonth = function() {
+                this.current.subtract('months', 1);
+                this.next = false;
+                this.draw();
+              }
+
+              window.Calendar = Calendar;
+
+              function createElement(tagName, className, innerText) {
+                var ele = document.createElement(tagName);
+                if(className) {
+                  ele.className = className;
+                }
+                if(innerText) {
+                  ele.innderText = ele.textContent = innerText;
+                }
+                return ele;
+              }
+            }();
+
+            !function() {
+              var data = [
+      { eventName: 'Lunch Meeting w/ Mark', calendar: 'Work', color: 'orange', date: '2023-08-01' },
+              ];
 
 
-    //    const formData = new FormData();
-    //    var marcacao = {
-    //        IdMarcacao = 0,
-    //        Nome = document.getElementById("nome_marcacao"),
-    //        DataMarcacao = document.getElementById("DataMarcacao"),
-    //        Preco = 0.0
-    //        MarcacaoServico= ids
-    //    }
-    //    fetch("/Marcacoes/Criar", {
-    //        method: 'POST',
-    //        headers: {
-    //            'Accept': 'application/json',
-    //            'Content-Type': 'application/json'
-    //        },
-    //        body: JSON.stringify(marcacao)
-    //    })
-    //        .then(response => response.json())
-    //        .then((data) => {
-    //            console.log({data})
-    //        })
-    //        .catch(error => console.error('Unable to add item.', error));
-    //}
 
-</script>*@
-<script src=~/js/site.js></script>
+              function addDate(ev) {
+
+              }
+
+              var calendar = new Calendar('#calendar', data);
+
+            }();
+
+
+</script>
+
+
+@*Style*@
 
 <style>
-    body {
-        margin: 0;
-        background-color: #010712;
-        background-image: url(https://static.pexels.com/photos/1526/dark-blur-blurred-gradient.jpg);
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        height: 100vh;
+    *, *:before, *:after {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
     }
 
-    .container2 {
-        width: 400px;
-        height: 200px;
-        position: absolute;
-        perspective: 1000;
-        -webkit-perspective: 1000;
-        left: calc(50% - 200px);
-        top: calc(50vh - 100px);
+
+    #calendar {
+        -webkit-transform: translate3d(0, 0, 0);
+        -moz-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        width: 420px;
+        height: 570px;
+        overflow: hidden;
+        margin-right: 30px;
     }
 
-    .card1 {
-        width: 100%;
-        height: 100%;
+    .selected {
+        background-color: #e8e8e8;
+        border-radius: 50%;
+        color: #333;
+        font-weight: bold;
+    }
+
+    .header {
+        height: 50px;
+        width: 420px;
+        background: rgba(66, 66, 66, 1);
+        text-align: center;
+        position: relative;
+        z-index: 100;
+    }
+
+        .header h1 {
+            margin: 0;
+            padding: 0;
+            font-size: 20px;
+            line-height: 50px;
+            font-weight: 100;
+            letter-spacing: 1px;
+        }
+
+    .left, .right {
         position: absolute;
-        transform-style: preserve-3d;
-        -webkit-transform-style: preserve-3d;
-        transition: transform 1s ease;
+        width: 0px;
+        height: 0px;
+        border-style: solid;
+        top: 50%;
+        margin-top: -7.5px;
         cursor: pointer;
     }
 
-    .back1, .front1 {
-        border-radius: 6px;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        transform-style: preserve-3d;
-        -webkit-transform-style: preserve-3d;
-        backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
+    .left {
+        border-width: 7.5px 10px 7.5px 0;
+        border-color: transparent rgba(160, 159, 160, 1) transparent transparent;
+        left: 20px;
     }
 
-    .contentfront1 {
-        width: 100%;
-        height: 100%;
-        float: left;
-        transform: translatez(60px);
-        -webkit-transform: translatez(60px);
-        backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
-        transform-style: preserve-3d;
-        -webkit-transform-style: preserve-3d;
+    .right {
+        border-width: 7.5px 0 7.5px 10px;
+        border-color: transparent transparent transparent rgba(160, 159, 160, 1);
+        right: 20px;
     }
 
-    .contentback1 {
-        width: 100%;
-        height: 100%;
-        float: left;
-        transform: translatez(60px);
-        -webkit-transform: translatez(60px);
-        backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
-        transform-style: preserve-3d;
-        -webkit-transform-style: preserve-3d;
+    .month {
+        /*overflow: hidden;*/
+        opacity: 0;
     }
 
-    .back1 {
-        transform: rotateY(180deg);
-        background-color: #232227;
-        -webkit-backface-visibility: hidden;
-        -moz-backface-visibility: hidden;
-        -o-backface-visibility: hidden;
-        backface-visibility: hidden;
+        .month.new {
+            -webkit-animation: fadeIn 1s ease-out;
+            opacity: 1;
+        }
+
+        .month.in.next {
+            -webkit-animation: moveFromTopFadeMonth .4s ease-out;
+            -moz-animation: moveFromTopFadeMonth .4s ease-out;
+            animation: moveFromTopFadeMonth .4s ease-out;
+            opacity: 1;
+        }
+
+        .month.out.next {
+            -webkit-animation: moveToTopFadeMonth .4s ease-in;
+            -moz-animation: moveToTopFadeMonth .4s ease-in;
+            animation: moveToTopFadeMonth .4s ease-in;
+            opacity: 1;
+        }
+
+        .month.in.prev {
+            -webkit-animation: moveFromBottomFadeMonth .4s ease-out;
+            -moz-animation: moveFromBottomFadeMonth .4s ease-out;
+            animation: moveFromBottomFadeMonth .4s ease-out;
+            opacity: 1;
+        }
+
+        .month.out.prev {
+            -webkit-animation: moveToBottomFadeMonth .4s ease-in;
+            -moz-animation: moveToBottomFadeMonth .4s ease-in;
+            animation: moveToBottomFadeMonth .4s ease-in;
+            opacity: 1;
+        }
+
+    .week {
+        background: #4A4A4A;
     }
 
-    .front1 {
+    .day {
+        display: inline-block;
+        width: 60px;
+        padding: 10px;
+        text-align: center;
+        vertical-align: top;
+        cursor: pointer;
+        background: #4A4A4A;
+        position: relative;
+        z-index: 100;
+    }
+
+        .day.other {
+            color: rgba(255, 255, 255, .3);
+        }
+
+        .day.today {
+            color: rgba(156, 202, 235, 1);
+        }
+
+    .day-name {
+        font-size: 9px;
         text-transform: uppercase;
-        background-color: #232227;
-        -webkit-backface-visibility: hidden;
-        -moz-backface-visibility: hidden;
-        -o-backface-visibility: hidden;
-        backface-visibility: hidden;
+        margin-bottom: 5px;
+        color: rgba(255, 255, 255, .5);
+        letter-spacing: .7px;
     }
 
-    .date1 {
-        height: 100%;
-        width: 130px;
-        float: left;
-        background-color: #E76642;
-        border-radius: 0 6px 6px 0;
-        text-align: right;
-        padding: 10px 30px;
-        box-sizing: border-box;
-        transform-style: preserve-3d;
-        -webkit-transform-style: preserve-3d;
+    .day-number {
+        font-size: 24px;
+        letter-spacing: 1.5px;
     }
 
-    .datecont {
-        height: 100%;
-        transform: translatez(60px) scale(.9);
-        -webkit-transform: translatez(60px) scale(.9);
+
+    .day .day-events {
+        list-style: none;
+        margin-top: 3px;
+        text-align: center;
+        height: 12px;
+        line-height: 6px;
+        overflow: hidden;
     }
 
-    #date1 {
-        font-size: 50px;
-        color: #ECECE7;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 500;
-        float: right;
+        .day .day-events span {
+            vertical-align: top;
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+            width: 5px;
+            height: 5px;
+            line-height: 5px;
+            margin: 0 1px;
+        }
+
+    .blue {
+        background: rgba(156, 202, 235, 1);
     }
 
-    #day1 {
-        float: right;
-        font-size: 14px;
-        color: #232227;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 400;
+    .orange {
+        background: rgba(247, 167, 0, 1);
     }
 
-    #month1 {
-        float: right;
-        font-size: 10px;
-        color: #232227;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 200;
+    .green {
+        background: rgba(153, 198, 109, 1);
     }
 
-    .date1 i {
-        color: #ECECE7;
+    .yellow {
+        background: rgba(249, 233, 0, 1);
+    }
+
+    .details {
+        position: relative;
+        width: 420px;
+        height: 75px;
+        background: rgba(164, 164, 164, 1);
+        margin-top: 5px;
+        border-radius: 4px;
+    }
+
+        .details.in {
+            -webkit-animation: moveFromTopFade .5s ease both;
+            -moz-animation: moveFromTopFade .5s ease both;
+            animation: moveFromTopFade .5s ease both;
+        }
+
+        .details.out {
+            -webkit-animation: moveToTopFade .5s ease both;
+            -moz-animation: moveToTopFade .5s ease both;
+            animation: moveToTopFade .5s ease both;
+        }
+
+    .arrow {
         position: absolute;
-        bottom: 10px;
-        right: 0;
+        top: -5px;
+        left: 50%;
+        margin-left: -2px;
+        width: 0px;
+        height: 0px;
+        border-style: solid;
+        border-width: 0 5px 5px 5px;
+        border-color: transparent transparent rgba(164, 164, 164, 1) transparent;
+        transition: all 0.7s ease;
     }
 
-        .date1 i:hover {
-            color: #232227;
-            transition: .3s ease;
+    .events {
+        height: 75px;
+        padding: 7px 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+        .events.in {
+            -webkit-animation: fadeIn .3s ease both;
+            -moz-animation: fadeIn .3s ease both;
+            animation: fadeIn .3s ease both;
         }
 
-    .month1 {
-        height: 100%;
-        width: 270px;
-        float: left;
-        padding: 20px 30px;
-        box-sizing: border-box;
-    }
-
-        .month1 table {
-            width: 100%;
+        .events.in {
+            -webkit-animation-delay: .3s;
+            -moz-animation-delay: .3s;
+            animation-delay: .3s;
         }
 
-    .orangeTr {
-        color: #E76642;
+    .details.out .events {
+        -webkit-animation: fadeOutShrink .4s ease both;
+        -moz-animation: fadeOutShink .4s ease both;
+        animation: fadeOutShink .4s ease both;
     }
 
-    .whiteTr {
-        color: #ECECE7;
+    .events.out {
+        -webkit-animation: fadeOut .3s ease both;
+        -moz-animation: fadeOut .3s ease both;
+        animation: fadeOut .3s ease both;
     }
 
-        .whiteTr th:hover {
-            color: #E76642;
-            transition: .3s ease;
+    .event {
+        font-size: 16px;
+        line-height: 22px;
+        letter-spacing: .5px;
+        padding: 2px 16px;
+        vertical-align: top;
+    }
+
+        .event.empty {
+            color: #eee;
         }
 
-    .month1 tr {
-        height: 24px;
+    .event-category {
+        height: 10px;
+        width: 10px;
+        display: inline-block;
+        margin: 6px 0 0;
+        vertical-align: top;
     }
 
-    .month1 th {
-        width: 14%;
-        font-size: 10px;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 400;
+    .event span {
+        display: inline-block;
+        padding: 0 0 0 7px;
     }
 
-    .flipped {
-        transform: rotateY(-180deg);
-        /*height:400px;
-                  width:200px;
-                  left:calc(50% - 100px);
-                  top:calc(50vh - 200px);*/
+    .legend {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 30px;
+        background: rgba(60, 60, 60, 1);
+        line-height: 30px;
     }
 
-    .backcontainer1 {
-        transform-style: preserve-3d;
-        width: calc(100% - 60px);
-        height: calc(100% - 40px);
-        float: left;
-        margin-left: 30px;
-        margin-top: 20px;
-        /*transform:translatez(60px) scale();*/
-
-        background-color: #E76642;
-        border-radius: 6px;
-        padding: 10px 30px;
-        box-sizing: border-box;
-        transform-style: preserve-3d;
-        -webkit-transform-style: preserve-3d;
+    .entry {
+        position: relative;
+        padding: 0 0 0 25px;
+        font-size: 13px;
+        display: inline-block;
+        line-height: 30px;
+        background: transparent;
     }
+
+        .entry:after {
+            position: absolute;
+            content: '';
+            height: 5px;
+            width: 5px;
+            top: 12px;
+            left: 14px;
+        }
+
+        .entry.blue:after {
+            background: rgba(156, 202, 235, 1);
+        }
+
+        .entry.orange:after {
+            background: rgba(247, 167, 0, 1);
+        }
+
+        .entry.green:after {
+            background: rgba(153, 198, 109, 1);
+        }
+
+        .entry.yellow:after {
+            background: rgba(249, 233, 0, 1);
+        }
+
+    /* Animations are cool!  */
+    @@-webkit-keyframes moveFromTopFade {
+        from {
+            opacity: .3;
+            height: 0px;
+            margin-top: 0px;
+            -webkit-transform: translateY(-100%);
+        }
+    }
+
+    @@-moz-keyframes moveFromTopFade {
+        from {
+            height: 0px;
+            margin-top: 0px;
+            -moz-transform: translateY(-100%);
+        }
+    }
+
+    @@keyframes moveFromTopFade {
+        from {
+            height: 0px;
+            margin-top: 0px;
+            transform: translateY(-100%);
+        }
+    }
+
+    @@-webkit-keyframes moveToTopFade {
+        to {
+            opacity: .3;
+            height: 0px;
+            margin-top: 0px;
+            opacity: 0.3;
+            -webkit-transform: translateY(-100%);
+        }
+    }
+
+    @@-moz-keyframes moveToTopFade {
+        to {
+            height: 0px;
+            -moz-transform: translateY(-100%);
+        }
+    }
+
+    @@keyframes moveToTopFade {
+        to {
+            height: 0px;
+            transform: translateY(-100%);
+        }
+    }
+
+    @@-webkit-keyframes moveToTopFadeMonth {
+        to {
+            opacity: 0;
+            -webkit-transform: translateY(-30%) scale(.95);
+        }
+    }
+
+    @@-moz-keyframes moveToTopFadeMonth {
+        to {
+            opacity: 0;
+            -moz-transform: translateY(-30%);
+        }
+    }
+
+    @@keyframes moveToTopFadeMonth {
+        to {
+            opacity: 0;
+            -moz-transform: translateY(-30%);
+        }
+    }
+
+    @@-webkit-keyframes moveFromTopFadeMonth {
+        from {
+            opacity: 0;
+            -webkit-transform: translateY(30%) scale(.95);
+        }
+    }
+
+    @@-moz-keyframes moveFromTopFadeMonth {
+        from {
+            opacity: 0;
+            -moz-transform: translateY(30%);
+        }
+    }
+
+    @@keyframes moveFromTopFadeMonth {
+        from {
+            opacity: 0;
+            -moz-transform: translateY(30%);
+        }
+    }
+
+    @@-webkit-keyframes moveToBottomFadeMonth {
+        to {
+            opacity: 0;
+            -webkit-transform: translateY(30%) scale(.95);
+        }
+    }
+
+    @@-moz-keyframes moveToBottomFadeMonth {
+        to {
+            opacity: 0;
+            -webkit-transform: translateY(30%);
+        }
+    }
+
+    @@keyframes moveToBottomFadeMonth {
+        to {
+            opacity: 0;
+            -webkit-transform: translateY(30%);
+        }
+    }
+
+    @@-webkit-keyframes moveFromBottomFadeMonth {
+        from {
+            opacity: 0;
+            -webkit-transform: translateY(-30%) scale(.95);
+        }
+    }
+
+    @@-moz-keyframes moveFromBottomFadeMonth {
+        from {
+            opacity: 0;
+            -webkit-transform: translateY(-30%);
+        }
+    }
+
+    @@keyframes moveFromBottomFadeMonth {
+        from {
+            opacity: 0;
+            -webkit-transform: translateY(-30%);
+        }
+    }
+
+    @@-webkit-keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+    }
+
+    @@-moz-keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+    }
+
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+    }
+
+    @@-webkit-keyframes fadeOut {
+        to {
+            opacity: 0;
+        }
+    }
+
+    @@-moz-keyframes fadeOut {
+        to {
+            opacity: 0;
+        }
+    }
+
+    @@keyframes fadeOut {
+        to {
+            opacity: 0;
+        }
+    }
+
+    @@-webkit-keyframes fadeOutShink {
+        to {
+            opacity: 0;
+            padding: 0px;
+            height: 0px;
+        }
+    }
+
+    @@-moz-keyframes fadeOutShink {
+        to {
+            opacity: 0;
+            padding: 0px;
+            height: 0px;
+        }
+    }
+
+    @@keyframes fadeOutShink {
+        to {
+            opacity: 0;
+            padding: 0px;
+            height: 0px;
+        }
+    }
+
 </style>
