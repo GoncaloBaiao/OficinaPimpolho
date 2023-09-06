@@ -37,7 +37,7 @@ namespace OficinaPimpolho.Controllers
             Marcacao marcacao = contatoRepositorio.ObterMarcacaoId(Id);
 
             return View(marcacao);
-        }
+        } 
 
         [HttpPost]
         public IActionResult Edit(Marcacao marcacao)
