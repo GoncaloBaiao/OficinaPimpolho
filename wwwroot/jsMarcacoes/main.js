@@ -211,7 +211,7 @@ function show_events(events, month, day) {
     // If there are no events for this date, notify the user
     if(events.length===0) {
         var event_card = $("<div class='event-card'></div>");
-        var event_name = $("<div class='event-name'>There are no events planned for "+month+" "+day+".</div>");
+        var event_name = $("<div class='event-name'>Nao ha eventos planeados para " + day + " de " + month + ".</div>");
         $(event_card).css({ "border-left": "10px solid #FF1744" });
         $(event_card).append(event_name);
         $(".events-container").append(event_card);
@@ -349,18 +349,18 @@ var event_data = {
 };
 
 const months = [ 
-    "January", 
-    "February", 
-    "March", 
-    "April", 
-    "May", 
-    "June", 
-    "July", 
-    "August", 
-    "September", 
-    "October", 
-    "November", 
-    "December" 
+    "janeiro", 
+    "fevereiro", 
+    "marco", 
+    "abril", 
+    "maio", 
+    "junho", 
+    "julho", 
+    "agosto", 
+    "setembro", 
+    "outubro", 
+    "novembro", 
+    "dezembro" 
 ];
 
 })(jQuery);
