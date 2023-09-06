@@ -106,5 +106,23 @@ namespace OficinaPimpolho.Repositorio
         {
             return _context.Servico.Find(Id);
         }
+
+        public Servico ObterServicoNome(string Nome)
+        {
+            return _context.Servico.Where(o => o.Nome.Equals(Nome)).FirstOrDefault();
+        }
+
+        public List<MarcacaoServico> Adicionar(List<MarcacaoServico> listaMarcacaoServicos)
+        {
+            return null;
+            foreach (var servico in listaMarcacaoServicos)
+            {
+                
+            }
+        }
+        public async Task Salvar()
+        {
+            await _context.SaveChangesAsync();
+        }
     }
 }

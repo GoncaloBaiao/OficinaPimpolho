@@ -53,16 +53,34 @@ namespace OficinaPimpolho.Controllers
             var marcacao = contatoRepositorio.ObterMarcacaoId(Id);
             return View(marcacao);
         }
-        [HttpPost]
-        public IActionResult Criar( Marcacao marcacao)
-        {
-            Servico servico = contatoRepositorio.ObterServicoId(1);
-            List<MarcacaoServico> marcacaoServicos = new List<MarcacaoServico> { new MarcacaoServico { MarcacaoId = 1, ServicoId = 1, Marcacao = marcacao, Servico = servico } };
-            marcacao.MarcacaoServico = marcacaoServicos;
 
-            Marcacao marcacaoRecord = contatoRepositorio.Adicionar(marcacao);
+
+        [HttpPost]
+        public async Task<IActionResult> Criar([FromBody] UploadMarcacao marcacao)
+        {
+            //Servico servico = contatoRepositorio.ObterServicoId(1);//marcacao.MarcacaoServico = marcacaoServicos;
+
+            Marcacao marcacaoRecord = new Marcacao {Nome=marcacao.Name, Preco=160, DataMarcacao= DateTime.Now};//a DateTime.Now tem de ser da marcacao
+            List<Servico> lista = new List<Servico>();
+            foreach (var Item in marcacao.Servicos) {
+                if (contatoRepositorio.ObterServicoNome(Item) != null)
+                {
+                    lista.Add(contatoRepositorio.ObterServicoNome(Item));
+                }
+            }
+
+            var m = contatoRepositorio.Adicionar(marcacaoRecord);
+            List<MarcacaoServico> marcacaoServicos = new List<MarcacaoServico>();
+            foreach (var item in lista) { 
+            marcacaoServicos.Add( new MarcacaoServico { MarcacaoId = marcacaoRecord.IdMarcacao, ServicoId = item.IdServico, Marcacao = marcacaoRecord, Servico = item } );
+                
+            }
             
-            return RedirectToAction("Index");
+            m.MarcacaoServico = marcacaoServicos;
+            await contatoRepositorio.Salvar();
+
+            var a = "resultou";
+            return new JsonResult(a);
         }
 
         public IActionResult Apagar(int Id)
@@ -70,6 +88,14 @@ namespace OficinaPimpolho.Controllers
             contatoRepositorio.Apagar(Id);
             return RedirectToAction("Index");
         }
+
+        public List<Marcacao> ObterMarcacoes()
+        {
+            
+            return contatoRepositorio.ObterMarcacao();
+        }
+
+
 
     }
 }

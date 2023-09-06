@@ -18,6 +18,13 @@ namespace OficinaPimpolho.Repositorio
         List<Servico> ObterServicos();
 
         Servico ObterServicoId(int Id);
+
+        Servico ObterServicoNome(string Nome);
+
+        List<MarcacaoServico> Adicionar(List<MarcacaoServico> listaMarcacaoServicos);
+        Task Salvar();
     }
+
+
 
 }
