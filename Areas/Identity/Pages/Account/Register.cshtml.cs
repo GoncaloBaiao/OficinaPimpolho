@@ -32,6 +32,7 @@ namespace OficinaPimpolho.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly OficinaPimpolhoContext _context;
+        private readonly RoleManager<IdentityRole> _roleManager;
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
@@ -39,6 +40,9 @@ namespace OficinaPimpolho.Areas.Identity.Pages.Account
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
             OficinaPimpolhoContext context
+,
+            RoleManager<IdentityRole> roleManager
+
             )
         {
             _userManager = userManager;
@@ -48,6 +52,7 @@ namespace OficinaPimpolho.Areas.Identity.Pages.Account
             _logger = logger;
             _emailSender = emailSender;
             _context = context;
+            _roleManager = roleManager;
         }
 
         /// <summary>
@@ -126,6 +131,8 @@ namespace OficinaPimpolho.Areas.Identity.Pages.Account
         /// </summary>
         /// <param name="returnUrl">link para redirecionar o utilizador, se fornecido</param>
         /// <returns></returns>
+        /// 
+
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             // não preciso de especificar uma variável de adição de dados da 'view'
@@ -176,7 +183,20 @@ namespace OficinaPimpolho.Areas.Identity.Pages.Account
                         _context.Add(Input.Cliente); // adicionar o Cliente
                         await _context.SaveChangesAsync(); // 'commit' da adição
                                                            // Enviar para o utilizador para a página de confirmação da criaçao de Registo
-                        return RedirectToPage("RegisterConfirmation");
+                                                           // Verifica se o papel "Cliente" existe, se não existir, cria-o
+                    if (!await _roleManager.RoleExistsAsync("Cliente"))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole("Cliente"));
+                    }
+
+                    // Adiciona o usuário ao papel "Cliente"
+                    await _userManager.AddToRoleAsync(user, "Cliente");
+
+                    // Resto do código
+
+
+
+                    return RedirectToPage("RegisterConfirmation");
                     }
                     catch (Exception)
                     {
@@ -221,6 +241,8 @@ namespace OficinaPimpolho.Areas.Identity.Pages.Account
             // If we got this far, something failed, redisplay form
             return Page();
         }
+
+
 
         private IdentityUser CreateUser()
         {
