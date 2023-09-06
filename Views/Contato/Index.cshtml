@@ -13,60 +13,65 @@
 <br />
 <br />
 <div class="container">
-
-    @foreach (var item in Model)
-    {
-        <div class="col-xs-12 col-md-6 bootstrap snippets bootdeys">
-            <!-- Oficina -->
-        <div class="product-content product-wrap clearfix">
-                <div class="row">
-                    <div class="col-md-5 col-sm-12 col-xs-12">
-                        <div class="product-image">
-                            <!-- imagem da oficina -->
-                        <img src="@item.Image" alt="194x228" class="img-responsive">
-                        </div>
-                    </div>
-                    <div class="col-md-7 col-sm-12 col-xs-12">
-                        <div class="product-deatil">
-                            <h5 class="name">
-                                <!-- Nome da oficina -->
-                            <a>
-                                    @item.Nome <span>Localização</span>
-                                </a>
-                            </h5>
-                            <!-- Localidade da oficina -->
-                        <p class="price-container">
-                                <span>@item.Localidade</span>
-                            </p>
-                        </div>
-                        <!-- codigo-postal da oficina -->
-                    <div class="product-deatil">
-                            <a>Codigo-postal:</a>
-                            <p>@item.CodigoPostal</p>
-                        </div>
-                        <!-- telefone da oficina -->
-                    <div class="product-deatil">
-                            <a>Telefone:</a>
-                            <p>@item.NumTelemovel</p>
-                        </div>
-
-                        <div class="product-info smart-form">
-                            <br />
-                            <div class="row">
-                                <div class="col-md-4 col-sm-4 col-xs-4">
-                                    <a role="button" class="btn btn-outline-warning" asp-controller="Contato" asp-route-id="@item.IdOficina" asp-action="Editar" style="color:darkgoldenrod">Editar</a>
-                                </div>
-                                <div class="col-md-4 col-sm-4 col-xs-4">
-                                    <a role="button" class="btn btn-outline-danger" asp-route-id="@item.IdOficina" asp-controller="Contato" asp-action="ApagarConfirmacao" style="color:darksalmon">Apagar</a>
-                                </div>
+    
+        @foreach (var item in Model)
+        {
+            <div class="col-xs-12 col-md-6 bootstrap snippets bootdeys">
+                <!-- Oficina -->
+                <div class="product-content product-wrap clearfix">
+                    <div class="row">
+                        <div class="col-md-5 col-sm-12 col-xs-12">
+                            <div class="product-image">
+                                <!-- imagem da oficina -->
+                                <img src="@item.Image" alt="194x228" class="img-responsive">
                             </div>
                         </div>
+                        <div class="col-md-7 col-sm-12 col-xs-12">
+                            <div class="product-deatil">
+                                <h5 class="name">
+                                    <!-- Nome da oficina -->
+                                    <a>
+                                        @item.Nome <span>Localização</span>
+                                    </a>
+                                </h5>
+                                <!-- Localidade da oficina -->
+                                <p class="price-container">
+                                    <span>@item.Localidade</span>
+                                </p>
+                            </div>
+                            <!-- codigo-postal da oficina -->
+                            <div class="product-deatil">
+                                <a>Codigo-postal:</a>
+                                <p>@item.CodigoPostal</p>
+                            </div>
+                            <!-- telefone da oficina -->
+                            <div class="product-deatil">
+                                <a>Telefone:</a>
+                                <p>@item.NumTelemovel</p>
+                            </div>
+
+                        @if (User.IsInRole("Gestor"))
+                        {
+                            <div class="product-info smart-form">
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-4 col-xs-4">
+                                        <a role="button" class="btn btn-outline-warning" asp-controller="Contato" asp-route-id="@item.IdOficina" asp-action="Editar" style="color:darkgoldenrod">Editar</a>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-4">
+                                        <a role="button" class="btn btn-outline-danger" asp-route-id="@item.IdOficina" asp-controller="Contato" asp-action="ApagarConfirmacao" style="color:darksalmon">Apagar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
                     </div>
                 </div>
+                <!-- end Oficina -->
             </div>
-            <!-- end Oficina -->
-    </div>
+  
     }
+    
 </div>
 <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin-top:10px;">
     <a class="btn btn-outline-info" role="button" asp-controller="Home" asp-action="Index" style="color:darkblue;">Voltar ao menu</a>

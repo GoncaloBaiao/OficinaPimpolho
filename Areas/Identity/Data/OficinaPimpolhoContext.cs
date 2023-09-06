@@ -69,11 +69,7 @@ public class OficinaPimpolhoContext : IdentityDbContext<IdentityUser>
                         listaOficinas
                         );
 
-        builder.Entity<Gestor>().HasData(
-                new Gestor { IdGestor = 1, Nome = "Guita Pimpolho", Email = "celeste@gmail.com", Ntelemovel = "911111111", OficinaId=1 },
-                new Gestor { IdGestor = 2, Nome = "Carlos Ribeiro", Email = "sarabatista@gmail.com", Ntelemovel = "911111112", OficinaId=2 },
-                new Gestor { IdGestor = 3, Nome = "Joaquim Alberto", Email = "tinoni@gmail.com", Ntelemovel = "911111113", OficinaId=3 }
-                     );
+       
     }
     // Representar as Tabelas da BD
     public DbSet<Cliente> Cliente { get; set; }
