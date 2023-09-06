@@ -1,9 +1,14 @@
 (function($) {
-
+    let servicos = [];
 	"use strict";
 
 	// Setup the calendar with the current date
-$(document).ready(function(){
+    $(document).ready(async function () {
+
+        const response = await fetch("/Marcacoes/ObterMarcacoes");
+        const movies = await response.json();
+        console.log(movies);
+      
     var date = new Date();
     var today = date.getDate();
     // Set click handlers for DOM elements
@@ -138,9 +143,32 @@ function new_event(event) {
         $(".events-container").show(250);
     });
     // Event handler for ok button
-    $("#ok-button").unbind().click({date: event.data.date}, function() {
+    $("#ok-button").unbind().click({ date: event.data.date }, function () {
+        servicos = [];
+        $('input[type=checkbox]:checked').each(function () {
+            var status = (this.checked ? servicos.push($(this).val()) : "");
+        });
+
+        console.log(servicos);
         var date = event.data.date;
         var name = $("#name").val().trim();
+        var marcacao = { name, servicos };
+        fetch("/Marcacoes/Criar", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(marcacao)
+        })
+            .then(res => res.json())
+            .then(function (data) {
+                // rest of the Code
+                console.log(data);
+            })
+            .catch(function (error) {
+                console.log('Request failed', error);
+            })
         var count = 1;
         var day = parseInt($(".active-date").html());
         // Basic form validation
@@ -159,6 +187,8 @@ function new_event(event) {
         }
     });
 }
+
+
 
 // Adds a json event to event_data
 function new_event_json(name, count, date, day) {
@@ -190,17 +220,25 @@ function show_events(events, month, day) {
         // Go through and add each event as a card to the events container
         for(var i=0; i<events.length; i++) {
             var event_card = $("<div class='event-card'></div>");
-            var event_name = $("<div class='event-name'>"+events[i]["occasion"]+":</div>");
-            var event_count = $("<div class='event-count'>"+events[i]["invited_count"]+" Marcado </div>");
-            if(events[i]["cancelled"]===true) {
+            var event_name = $("<div class='event-name'>" + events[i]["occasion"] + ":</div>");
+            var event_count = $("<div class='event-count'>" + " </div>");
+            console.log(event_count);
+            for (var i = 0; i < servicos.length; i++) {
+                event_count[0].innerHTML += servicos[i] + " ";
+            }
+
+            
+
+            /*if(events[i]["cancelled"]===true) {
                 $(event_card).css({
                     "border-left": "10px solid #FF1744"
                 });
-                event_count = $("<div class='event-cancelled'> Cancelado </div>");
-            }
+                event_count = $("<div class='event-cancelled'>Cancelled</div>");
+            }*/
             $(event_card).append(event_name).append(event_count);
             $(".events-container").append(event_card);
         }
+        
     }
 }
 
@@ -218,92 +256,95 @@ function check_events(day, month, year) {
     return events;
 }
 
+
+
 // Given data for events in JSON format
 var event_data = {
     "events": [
-    {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2023,
-        "month": 8,
-        "day": 28,
-        "cancelled": true
-    },
-    {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2020,
-        "month": 5,
-        "day": 10,
-        "cancelled": true
-    },
-        {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2020,
-        "month": 5,
-        "day": 10,
-        "cancelled": true
-    },
-    {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2020,
-        "month": 5,
-        "day": 10
-    },
-        {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2020,
-        "month": 5,
-        "day": 10,
-        "cancelled": true
-    },
-    {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2023,
-        "month": 8,
-        "day": 20
-    },
-        {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2020,
-        "month": 5,
-        "day": 10,
-        "cancelled": true
-    },
-    {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2020,
-        "month": 5,
-        "day": 10
-    },
-        {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2020,
-        "month": 5,
-        "day": 10,
-        "cancelled": true
-    },
-    {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2020,
-        "month": 5,
-        "day": 10
-    },
-    {
-        "occasion": " Test Event",
-        "invited_count": 120,
-        "year": 2020,
-        "month": 5,
-        "day": 11
-    }
+    //    {
+        
+    //    "occasion": " Repeated Test Event ",
+    //    "invited_count": 120,
+    //    "year": 2023,
+    //    "month": 8,
+    //    "day": 28,
+    //    "cancelled": true
+    //},
+    //{
+    //    "occasion": " Repeated Test Event ",
+    //    "invited_count": 120,
+    //    "year": 2020,
+    //    "month": 5,
+    //    "day": 10,
+    //    "cancelled": true
+    //},
+    //    {
+    //    "occasion": " Repeated Test Event ",
+    //    "invited_count": 120,
+    //    "year": 2020,
+    //    "month": 5,
+    //    "day": 10,
+    //    "cancelled": true
+    //},
+    //{
+    //    "occasion": " Repeated Test Event ",
+    //    "invited_count": 120,
+    //    "year": 2020,
+    //    "month": 5,
+    //    "day": 10
+    //},
+    //    {
+    //    "occasion": " Repeated Test Event ",
+    //    "invited_count": 120,
+    //    "year": 2020,
+    //    "month": 5,
+    //    "day": 10,
+    //    "cancelled": true
+    //},
+    //{
+    //    "occasion": " Repeated Test Event ",
+    //    "invited_count": 120,
+    //    "year": 2023,
+    //    "month": 8,
+    //    "day": 20
+    //},
+    //    {
+    //    "occasion": " Repeated Test Event ",
+    //    "invited_count": 120,
+    //    "year": 2020,
+    //    "month": 5,
+    //    "day": 10,
+    //    "cancelled": true
+    //},
+    //{
+    //    "occasion": " Repeated Test Event ",
+    //    "invited_count": 120,
+    //    "year": 2020,
+    //    "month": 5,
+    //    "day": 10
+    //},
+    //    {
+    //    "occasion": " Repeated Test Event ",
+    //    "invited_count": 120,
+    //    "year": 2020,
+    //    "month": 5,
+    //    "day": 10,
+    //    "cancelled": true
+    //},
+    //{
+    //    "occasion": " Repeated Test Event ",
+    //    "invited_count": 120,
+    //    "year": 2020,
+    //    "month": 5,
+    //    "day": 10
+    //},
+    //{
+    //    "occasion": " Test Event",
+    //    "invited_count": 120,
+    //    "year": 2020,
+    //    "month": 5,
+    //    "day": 11
+    //}
     ]
 };
 
