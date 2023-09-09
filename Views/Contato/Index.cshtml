@@ -10,9 +10,12 @@
 
 <br />
 <br />
+@if (User.IsInRole("Gestor"))
+{
 <div class="d-grid gap-2 d-md-flex" style="margin-top:10px;">
     <a class="btn btn-outline-primary" role="button" asp-controller="Contato" asp-action="Criar">Criar Oficinas</a>
 </div>
+}
 <br />
 <br />
 
