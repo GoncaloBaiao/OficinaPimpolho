@@ -4,7 +4,7 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Registar contato</h1>
+    <h1 class="display-4">Criar Oficina</h1>
 </div>
 <form asp-controller="Contato" asp-action="Criar" method="post">
 
@@ -24,5 +24,10 @@
     <label for="exampleInputTelefone" class="form-label">Telefone</label>
     <input type="text" asp-for="NumTelemovel" class="form-control" id="exampleInputTelefone">
   </div>
+  <div class="mb-3">
+  <label for="exampleInputTelele1" class="form-label">Imagem</label>
+    <input type="text" asp-for="Image" class="form-control" id="exampleInputImageLink">
+  </div>
   <button type="submit" class="btn btn-primary">Submit</button>
+  <a class="btn btn-secondary" asp-controller="Contato" asp-action="Index" role="button">Voltar</a>
 </form>
