@@ -65,7 +65,10 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                 @if (User.IsInRole("Gestor"))
+                                {
                                 <button class="button" id="add-button">Adicionar Marcação</button>
+                                }
                             </div>
                         </div>
                         <div class="events-container">
