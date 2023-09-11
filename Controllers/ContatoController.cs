@@ -50,7 +50,6 @@ namespace OficinaPimpolho.Controllers
             var oficina = contatoRepositorio.ObterOficinasId(Id);
             return View(oficina);
         }
-        [Authorize(Roles = "Gestor")]
         [HttpPost]
         public IActionResult Criar(Oficina oficina) {
             contatoRepositorio.Adicionar(oficina);
