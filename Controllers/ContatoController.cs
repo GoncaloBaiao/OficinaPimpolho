@@ -56,7 +56,6 @@ namespace OficinaPimpolho.Controllers
         [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Criar(Oficina oficina)
         {
-
             contatoRepositorio.Adicionar(oficina);
             return RedirectToAction("Index");
         }
