@@ -90,6 +90,7 @@ namespace OficinaPimpolho.Controllers
             return new JsonResult(a);
         }
 
+
         [Authorize(Roles = "Gestor")]
         public IActionResult Apagar(int Id)
         {

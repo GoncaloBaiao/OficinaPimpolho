@@ -15,12 +15,14 @@ namespace OficinaPimpolho.Models
         /// </summary>
         [Required(ErrorMessage = "O nome é de preenchimento obrigatório.")]
         [StringLength(60, ErrorMessage = "O nome não pode ter mais do que 60 caracteres.")]
+        [Display(Name = "Nome")]
         public string Nome { get; set; }
 
         /// <summary>
         /// Localidade da oficina
         /// </summary>
         [Required(ErrorMessage = "A localiade é de preenchimento obrigatório.")]
+        [Display(Name = "Localidade")]
         [StringLength(30, ErrorMessage = "A localidade não pode ter mais do que 30 caracteres.")]
         public string Localidade { get; set; }
 
@@ -41,6 +43,11 @@ namespace OficinaPimpolho.Models
         [Display(Name = "Telemóvel")]
         public string NumTelemovel { get; set; }
 
+        /// <summary>
+        /// Imagem da Oficina
+        /// </summary>
+        [Required(ErrorMessage = "A imagem é de preenchimento obrigatório.")]
+        [Display(Name = "Imagem")]
         public string Image { get; set; }
 
 
