@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OficinaPimpolho.Data;
 
@@ -11,9 +12,10 @@ using OficinaPimpolho.Data;
 namespace OficinaPimpolho.Migrations
 {
     [DbContext(typeof(OficinaPimpolhoContext))]
-    partial class OficinaPimpolhoContextModelSnapshot : ModelSnapshot
+    [Migration("20230910183553_Oficinas")]
+    partial class Oficinas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -388,7 +390,7 @@ namespace OficinaPimpolho.Migrations
                     b.HasData(
                         new
                         {
-                            IdOficina = 1001,
+                            IdOficina = 1,
                             CodigoPostal = "2835-276",
                             Image = "/images/id1_boxcarvulcolisboa.jpg",
                             Localidade = "Setúbal",
@@ -397,7 +399,7 @@ namespace OficinaPimpolho.Migrations
                         },
                         new
                         {
-                            IdOficina = 1002,
+                            IdOficina = 2,
                             CodigoPostal = "8500-476",
                             Image = "/images/id10.jpg",
                             Localidade = "Faro",
@@ -406,7 +408,7 @@ namespace OficinaPimpolho.Migrations
                         },
                         new
                         {
-                            IdOficina = 1003,
+                            IdOficina = 3,
                             CodigoPostal = "7600-476",
                             Image = "/images/id11_corvauto.jpg",
                             Localidade = "Beja",
@@ -415,7 +417,7 @@ namespace OficinaPimpolho.Migrations
                         },
                         new
                         {
-                            IdOficina = 1004,
+                            IdOficina = 4,
                             CodigoPostal = "2140-476",
                             Image = "/images/id12.jpg",
                             Localidade = "Santarém",
@@ -424,7 +426,7 @@ namespace OficinaPimpolho.Migrations
                         },
                         new
                         {
-                            IdOficina = 1005,
+                            IdOficina = 5,
                             CodigoPostal = "4560-476",
                             Image = "/images/id13_rinoauto.jpg",
                             Localidade = "Porto",
@@ -433,7 +435,7 @@ namespace OficinaPimpolho.Migrations
                         },
                         new
                         {
-                            IdOficina = 1006,
+                            IdOficina = 6,
                             CodigoPostal = "9754-476",
                             Image = "/images/id2_braga.jpg",
                             Localidade = "Vila Nova de Gaia",
@@ -442,7 +444,7 @@ namespace OficinaPimpolho.Migrations
                         },
                         new
                         {
-                            IdOficina = 1007,
+                            IdOficina = 7,
                             CodigoPostal = "2695-476",
                             Image = "/images/id3_autoarcadgua2.jpg",
                             Localidade = "Lisboa",
@@ -451,7 +453,7 @@ namespace OficinaPimpolho.Migrations
                         },
                         new
                         {
-                            IdOficina = 1008,
+                            IdOficina = 8,
                             CodigoPostal = "6290-476",
                             Image = "/images/id4.jpg",
                             Localidade = "Guarda",
@@ -460,7 +462,7 @@ namespace OficinaPimpolho.Migrations
                         },
                         new
                         {
-                            IdOficina = 1009,
+                            IdOficina = 9,
                             CodigoPostal = "3780-476",
                             Image = "/images/id6_meiricarro.jpg",
                             Localidade = "Aveiro",
@@ -469,7 +471,7 @@ namespace OficinaPimpolho.Migrations
                         },
                         new
                         {
-                            IdOficina = 1010,
+                            IdOficina = 10,
                             CodigoPostal = "4740-476",
                             Image = "/images/id7_automotor.jpg",
                             Localidade = "Braga",
@@ -478,7 +480,7 @@ namespace OficinaPimpolho.Migrations
                         },
                         new
                         {
-                            IdOficina = 1011,
+                            IdOficina = 11,
                             CodigoPostal = "3450-476",
                             Image = "/images/id8.jpg",
                             Localidade = "Viseu",
@@ -487,7 +489,7 @@ namespace OficinaPimpolho.Migrations
                         },
                         new
                         {
-                            IdOficina = 1012,
+                            IdOficina = 12,
                             CodigoPostal = "5300-815",
                             Image = "/images/id9_martinho.jpg",
                             Localidade = "Bragança",

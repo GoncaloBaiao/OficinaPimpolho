@@ -1,6 +1,8 @@
-﻿@model Oficina 
+﻿@model OficinaPimpolho.Models.Oficina
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 @{
-    ViewData["Title"] = "Lista de contatos";
+    ViewData["Title"] = "Editar Oficina (@Model.Nome)";
 }
 
 <div class="text-center">
@@ -8,30 +10,44 @@
 </div>
 
 <form asp-controller="Contato" asp-action="Edit" method="post">
+    <input type="hidden" asp-for="IdOficina" />
 
-    <input type="hidden" asp-for="IdOficina"/>
+    <div class="mb-3">
+        <label for="exampleInputNome" class="form-label">Nome</label>
+        <input type="text" asp-for="Nome" class="form-control" id="exampleInputNome">
+        <span class="text-danger">
+            @Html.ValidationMessageFor(model => model.Nome)
+        </span>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputLocalidade" class="form-label">Localidade</label>
+        <input type="text" asp-for="Localidade" class="form-control" id="exampleInputLocalidade">
+        <span class="text-danger">
+            @Html.ValidationMessageFor(model => model.Localidade)
+        </span>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputCodigoPostal" class="form-label">Código Postal</label>
+        <input type="text" asp-for="CodigoPostal" class="form-control" id="exampleInputCodigoPostal">
+        <span class="text-danger">
+            @Html.ValidationMessageFor(model => model.CodigoPostal)
+        </span>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputTelefone" class="form-label">Telefone</label>
+        <input type="text" asp-for="NumTelemovel" class="form-control" id="exampleInputTelefone">
+        <span class="text-danger">
+            @Html.ValidationMessageFor(model => model.NumTelemovel)
+        </span>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputImageLink" class="form-label">Imagem</label>
+        <input type="text" asp-for="Image" class="form-control" id="exampleInputImageLink">
+        <span class="text-danger">
+            @Html.ValidationMessageFor(model => model.Image)
+        </span>
+    </div>
 
-  <div class="mb-3">
-    <label for="exampleInputNomel1" class="form-label">Nome</label>
-    <input type="text" asp-for="Nome" class="form-control" id="exampleInputEmail1">
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Localidade</label>
-    <input type="text" asp-for="Localidade" class="form-control" id="exampleInputPassword1">
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputTelele1" class="form-label">Código Postal</label>
-    <input type="text" asp-for="CodigoPostal" class="form-control" id="exampleInputTelele1">
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputTelele1" class="form-label">Telefone</label>
-    <input type="text" asp-for="NumTelemovel" class="form-control" id="exampleInputTelele1">
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputTelele1" class="form-label">Imagem</label>
-    <input type="text" asp-for="Image" class="form-control" id="exampleInputImageLink">
-  </div>
- 
-  <button type="submit" class="btn btn-primary">Submit</button>
-  <a class="btn btn-secondary" asp-controller="Contato" asp-action="Index" role="button">Voltar</a>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a class="btn btn-secondary" asp-controller="Contato" asp-action="Index" role="button">Voltar</a>
 </form>

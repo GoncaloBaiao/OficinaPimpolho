@@ -1,33 +1,69 @@
-﻿@model Oficina 
+﻿@model OficinaPimpolho.Models.Oficina
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 @{
-    ViewData["Title"] = "Lista de contatos";
+    ViewData["Title"] = "Criar Oficina";
 }
 
 <div class="text-center">
     <h1 class="display-4">Criar Oficina</h1>
 </div>
-<form asp-controller="Contato" asp-action="Criar" method="post">
-
-  <div class="mb-3">
-    <label for="exampleInputNome" class="form-label">Nome</label>
-    <input type="text" asp-for="Nome" class="form-control" id="exampleInputNome">
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputLocalidade" class="form-label">Localidade</label>
-    <input type="text" asp-for="Localidade" class="form-control" id="exampleInputLocalidade">
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputCodPostal" class="form-label">Codigo-Postal</label>
-    <input type="text" asp-for="CodigoPostal" class="form-control" id="exampleInputCodPostal">
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputTelefone" class="form-label">Telefone</label>
-    <input type="text" asp-for="NumTelemovel" class="form-control" id="exampleInputTelefone">
-  </div>
-  <div class="mb-3">
-  <label for="exampleInputTelele1" class="form-label">Imagem</label>
-    <input type="text" asp-for="Image" class="form-control" id="exampleInputImageLink">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-  <a class="btn btn-secondary" asp-controller="Contato" asp-action="Index" role="button">Voltar</a>
+<form asp-controller="Contato" asp-action="Criar" method="post" onsubmit="return validarFormulario()">
+    <div class="mb-3">
+        <label for="exampleInputNome" class="form-label">Nome</label>
+        <input type="text" asp-for="Nome" class="form-control" id="exampleInputNome">
+        <span class="text-danger">
+            @Html.ValidationMessageFor(model => model.Nome)
+        </span>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputLocalidade" class="form-label">Localidade</label>
+        <input type="text" asp-for="Localidade" class="form-control" id="exampleInputLocalidade">
+        <span class="text-danger">
+            @Html.ValidationMessageFor(model => model.Localidade)
+        </span>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputCodPostal" class="form-label">Código Postal</label>
+        <input type="text" asp-for="CodigoPostal" class="form-control" id="exampleInputCodPostal">
+        <span class="text-danger">
+            @Html.ValidationMessageFor(model => model.CodigoPostal)
+        </span>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputTelefone" class="form-label">Telefone</label>
+        <input type="text" asp-for="NumTelemovel" class="form-control" id="exampleInputTelefone">
+        <span class="text-danger">
+            @Html.ValidationMessageFor(model => model.NumTelemovel)
+        </span>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputImageLink" class="form-label">Imagem</label>
+        <input type="text" asp-for="Image" class="form-control" id="exampleInputImageLink">
+        <span class="text-danger">
+            @Html.ValidationMessageFor(model => model.Image)
+        </span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a class="btn btn-secondary" asp-controller="Contato" asp-action="Index" role="button">Voltar</a>
 </form>
+
+<script>
+    function validarFormulario() {
+        // Obter os valores dos campos de entrada
+        var nome = document.getElementById("exampleInputNome").value;
+        var localidade = document.getElementById("exampleInputLocalidade").value;
+        var codigoPostal = document.getElementById("exampleInputCodPostal").value;
+        var telefone = document.getElementById("exampleInputTelefone").value;
+        var imagem = document.getElementById("exampleInputImageLink").value;
+
+        // Verificar se os campos estão preenchidos
+        if (nome === "" || localidade === "" || codigoPostal === "" || telefone === "" || imagem === "") {
+            alert("Por favor, preencha todos os campos.");
+            return false; // Impede o envio do formulário
+        }
+
+        // Se todos os campos estiverem preenchidos, permita o envio do formulário
+        return true;
+    }
+</script>
