@@ -9,7 +9,7 @@
     <h1 class="display-4">Editar Oficina (@Model.Nome)</h1>
 </div>
 
-<form asp-controller="Contato" asp-action="Edit" method="post">
+<form asp-controller="Oficinas" asp-action="Edit" method="post">
     <input type="hidden" asp-for="IdOficina" />
 
     <div class="mb-3">
@@ -49,5 +49,5 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
-    <a class="btn btn-secondary" asp-controller="Contato" asp-action="Index" role="button">Voltar</a>
+    <a class="btn btn-secondary" asp-controller="Oficinas" asp-action="Index" role="button">Voltar</a>
 </form>

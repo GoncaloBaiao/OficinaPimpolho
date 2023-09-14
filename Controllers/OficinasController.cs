@@ -8,17 +8,17 @@ using System.Data;
 namespace OficinaPimpolho.Controllers
 {
     
-    public class ContatoController : Controller
+    public class OficinasController : Controller
     {
-        private readonly IContatoRepositorio contatoRepositorio;
-        public ContatoController(OficinaPimpolhoContext context)
+        private readonly IOficinaRepositorio oficinaRepositorio;
+        public OficinasController(OficinaPimpolhoContext context)
         {
-            contatoRepositorio = new ContatoRepositorio(context);
+            oficinaRepositorio = new OficinaRepositorio(context);
         }
         [Authorize(Roles = "Cliente,Gestor")]
         public IActionResult Index()
         {
-            var Oficinas = contatoRepositorio.ObterOficinas();
+            var Oficinas = oficinaRepositorio.ObterOficinas();
             return View(Oficinas);
         }
         [Authorize(Roles = "Gestor")]
@@ -30,7 +30,7 @@ namespace OficinaPimpolho.Controllers
         [HttpGet]
         public IActionResult Editar(int Id)
         {
-            Oficina oficina = contatoRepositorio.ObterOficinasId(Id);
+            Oficina oficina = oficinaRepositorio.ObterOficinasId(Id);
 
             return View(oficina);
         }
@@ -39,7 +39,7 @@ namespace OficinaPimpolho.Controllers
         public IActionResult Edit(Oficina oficina)
         {
 
-            contatoRepositorio.Atualizar(oficina);
+            oficinaRepositorio.Atualizar(oficina);
             return RedirectToAction("Index");
         }
 
@@ -47,7 +47,7 @@ namespace OficinaPimpolho.Controllers
         [Authorize(Roles = "Gestor")]
         public IActionResult ApagarConfirmacao(int Id)
         {
-            var oficina = contatoRepositorio.ObterOficinasId(Id);
+            var oficina = oficinaRepositorio.ObterOficinasId(Id);
             return View(oficina);
         }
 
@@ -56,7 +56,7 @@ namespace OficinaPimpolho.Controllers
         [Authorize(Roles = "Gestor")]
         public async Task<IActionResult> Criar(Oficina oficina)
         {
-            contatoRepositorio.Adicionar(oficina);
+            oficinaRepositorio.Adicionar(oficina);
             return RedirectToAction("Index");
         }
 
@@ -64,7 +64,7 @@ namespace OficinaPimpolho.Controllers
 
         [Authorize(Roles = "Gestor")]
         public IActionResult Apagar(int Id) {
-            contatoRepositorio.Apagar(Id);
+            oficinaRepositorio.Apagar(Id);
             return RedirectToAction("Index");
         }
 

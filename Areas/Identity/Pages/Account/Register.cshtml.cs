@@ -103,7 +103,7 @@ namespace OficinaPimpolho.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
+            [Display(Name = "Confirmar password")]
             [Compare("Password", ErrorMessage = "A password e a sua confirmação não correspondem.")]
             public string ConfirmPassword { get; set; }
 
@@ -173,7 +173,7 @@ namespace OficinaPimpolho.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User created a new account with password.");
+                    _logger.LogInformation("Utilizador criado com password.");
 
                     Input.Cliente.Email = Input.Email;
 
@@ -219,7 +219,7 @@ namespace OficinaPimpolho.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                    await _emailSender.SendEmailAsync(Input.Email, "Confirme o seu email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
