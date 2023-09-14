@@ -2,7 +2,7 @@
 
 namespace OficinaPimpolho.Repositorio
 {
-    public interface IContatoRepositorio
+    public interface IOficinaRepositorio
     {
         Oficina Adicionar(Oficina oficina);
         List<Oficina> ObterOficinas();

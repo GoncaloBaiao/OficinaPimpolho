@@ -53,6 +53,7 @@ namespace OficinaPimpolho.Models
         [StringLength(50, ErrorMessage = "O email não pode ter mais de 50 caracteres.")]
         [EmailAddress(ErrorMessage = "O email introduzido não é válido.")]
         [Required(ErrorMessage = "Deve escrever o seu email.")]
+        [Display(Name = "Email")]
         public String Email { get; set; }
 
         /// <summary>
@@ -60,6 +61,7 @@ namespace OficinaPimpolho.Models
         /// </summary>
         [Required(ErrorMessage = "A Morada é de preenchimento obrigatório")]
         [StringLength(60, ErrorMessage = "A morada não pode ter mais de 60 caracteres.")]
+        [Display(Name = "Morada")]
         public String Morada { get; set; }
 
         /// <summary>
@@ -73,7 +75,9 @@ namespace OficinaPimpolho.Models
         /// <summary>
         /// Número de Telemóvel do Cliente
         /// </summary>
+        [Required(ErrorMessage = "Deve escrever o Número de telemóvel")]
         [StringLength(14, MinimumLength = 9, ErrorMessage = "O número deve ter entre 9 e 14 caracteres.")]
+        [Display(Name = "Número de telemóvel")]
         [RegularExpression("(00)?([0-9]{2,3})?[1-9][0-9]{8}", ErrorMessage = "Escreva, por favor, um nº de telemóvel com 9 algarismos. Se quiser, pode acrescentar o indicativo nacional e o internacional.")]
         public String Ntelemovel { get; set; }
 

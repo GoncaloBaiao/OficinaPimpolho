@@ -9,20 +9,20 @@ namespace OficinaPimpolho.Controllers
     
     public class MarcacoesController : Controller
     {
-        private readonly IContatoRepositorio contatoRepositorio;
+        private readonly IOficinaRepositorio oficinaRepositorio;
         public MarcacoesController(OficinaPimpolhoContext context)
         {
-            contatoRepositorio = new ContatoRepositorio(context);
+            oficinaRepositorio = new OficinaRepositorio(context);
             
         }
         [Authorize(Roles = "Cliente,Gestor")]
         public IActionResult Index()
         {
-            var marcacoes = contatoRepositorio.ObterMarcacao();
+            var marcacoes = oficinaRepositorio.ObterMarcacao();
             var viewModel = new MarcacaoViewModel
             {
                 MarcacaoList = marcacoes,
-                Serviços = contatoRepositorio.ObterServicos()
+                Serviços = oficinaRepositorio.ObterServicos()
             };
     
 
@@ -39,7 +39,7 @@ namespace OficinaPimpolho.Controllers
         [HttpGet]
         public IActionResult Editar(int Id)
         {
-            Marcacao marcacao = contatoRepositorio.ObterMarcacaoId(Id);
+            Marcacao marcacao = oficinaRepositorio.ObterMarcacaoId(Id);
 
             return View(marcacao);
         }   
@@ -49,14 +49,14 @@ namespace OficinaPimpolho.Controllers
         public IActionResult Edit(Marcacao marcacao)
         {
 
-            contatoRepositorio.Atualizar(marcacao);
+            oficinaRepositorio.Atualizar(marcacao);
             return RedirectToAction("Index");
         }
 
         [Authorize(Roles = "Gestor")]
         public IActionResult ApagarConfirmacao(int Id)
         {
-            var marcacao = contatoRepositorio.ObterMarcacaoId(Id);
+            var marcacao = oficinaRepositorio.ObterMarcacaoId(Id);
             return View(marcacao);
         }
 
@@ -65,18 +65,18 @@ namespace OficinaPimpolho.Controllers
         [HttpPost]
         public async Task<IActionResult> Criar([FromBody] UploadMarcacao marcacao)
         {
-            //Servico servico = contatoRepositorio.ObterServicoId(1);//marcacao.MarcacaoServico = marcacaoServicos;
+            //Servico servico = oficinaRepositorio.ObterServicoId(1);//marcacao.MarcacaoServico = marcacaoServicos;
 
             Marcacao marcacaoRecord = new Marcacao {Nome=marcacao.Name, Preco=160, DataMarcacao= DateTime.Now};//a DateTime.Now tem de ser da marcacao
             List<Servico> lista = new List<Servico>();
             foreach (var Item in marcacao.Servicos) {
-                if (contatoRepositorio.ObterServicoNome(Item) != null)
+                if (oficinaRepositorio.ObterServicoNome(Item) != null)
                 {
-                    lista.Add(contatoRepositorio.ObterServicoNome(Item));
+                    lista.Add(oficinaRepositorio.ObterServicoNome(Item));
                 }
             }
 
-            var m = contatoRepositorio.Adicionar(marcacaoRecord);
+            var m = oficinaRepositorio.Adicionar(marcacaoRecord);
             List<MarcacaoServico> marcacaoServicos = new List<MarcacaoServico>();
             foreach (var item in lista) { 
             marcacaoServicos.Add( new MarcacaoServico { MarcacaoId = marcacaoRecord.IdMarcacao, ServicoId = item.IdServico, Marcacao = marcacaoRecord, Servico = item } );
@@ -84,7 +84,7 @@ namespace OficinaPimpolho.Controllers
             }
             
             m.MarcacaoServico = marcacaoServicos;
-            await contatoRepositorio.Salvar();
+            await oficinaRepositorio.Salvar();
 
             var a = "resultou";
             return new JsonResult(a);
@@ -94,14 +94,14 @@ namespace OficinaPimpolho.Controllers
         [Authorize(Roles = "Gestor")]
         public IActionResult Apagar(int Id)
         {
-            contatoRepositorio.Apagar(Id);
+            oficinaRepositorio.Apagar(Id);
             return RedirectToAction("Index");
         }
 
         public List<Marcacao> ObterMarcacoes()
         {
             
-            return contatoRepositorio.ObterMarcacao();
+            return oficinaRepositorio.ObterMarcacao();
         }
 
 

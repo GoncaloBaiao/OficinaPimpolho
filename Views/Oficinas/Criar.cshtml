@@ -8,7 +8,7 @@
 <div class="text-center">
     <h1 class="display-4">Criar Oficina</h1>
 </div>
-<form asp-controller="Contato" asp-action="Criar" method="post" onsubmit="return validarFormulario()">
+<form asp-controller="Oficinas" asp-action="Criar" method="post" onsubmit="return validarFormulario()">
     <div class="mb-3">
         <label for="exampleInputNome" class="form-label">Nome</label>
         <input type="text" asp-for="Nome" class="form-control" id="exampleInputNome">
@@ -45,7 +45,7 @@
         </span>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
-    <a class="btn btn-secondary" asp-controller="Contato" asp-action="Index" role="button">Voltar</a>
+    <a class="btn btn-secondary" asp-controller="Oficinas" asp-action="Index" role="button">Voltar</a>
 </form>
 
 <script>

@@ -4,10 +4,10 @@ using OficinaPimpolho.Models;
 
 namespace OficinaPimpolho.Repositorio
 {
-    public class ContatoRepositorio : IContatoRepositorio
+    public class OficinaRepositorio : IOficinaRepositorio
     {
         private readonly OficinaPimpolhoContext _context;
-        public ContatoRepositorio(OficinaPimpolhoContext pimpolhoContext)
+        public OficinaRepositorio(OficinaPimpolhoContext pimpolhoContext)
         {
             this._context = pimpolhoContext;
         }
