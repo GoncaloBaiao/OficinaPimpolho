@@ -55,7 +55,7 @@ namespace OficinaPimpolho.Areas.Identity.Pages.Account
             var user = await _userManager.FindByEmailAsync(email);
             if (user == null)
             {
-                return NotFound($"Unable to load user with email '{email}'.");
+                return NotFound($"Não foi possivel de carregar utilizador com o email '{email}'.");
             }
 
             Email = email;

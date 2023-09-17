@@ -78,8 +78,8 @@ namespace OficinaPimpolho.Areas.Identity.Pages.Account
                 protocol: Request.Scheme);
             await _emailSender.SendEmailAsync(
                 Input.Email,
-                "Confirm your email",
-                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                "Confirme o seu email",
+                $"Confirme a sua conta <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clique aqui</a>.");
 
             ModelState.AddModelError(string.Empty, "Email de verificação enviado. Verifique o seu email.");
             return Page();
