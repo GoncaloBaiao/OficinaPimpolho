@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OficinaPimpolho.Data;
 
@@ -11,9 +12,10 @@ using OficinaPimpolho.Data;
 namespace OficinaPimpolho.Migrations
 {
     [DbContext(typeof(OficinaPimpolhoContext))]
-    partial class OficinaPimpolhoContextModelSnapshot : ModelSnapshot
+    [Migration("20230920191856_Oficinas5")]
+    partial class Oficinas5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

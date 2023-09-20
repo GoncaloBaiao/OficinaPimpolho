@@ -32,6 +32,7 @@ namespace OficinaPimpolho.Repositorio
             {
                 oficinaDb.Nome = oficina.Nome;
                 oficinaDb.Localidade = oficina.Localidade;
+                oficinaDb.Morada = oficina.Morada;
                 oficinaDb.CodigoPostal = oficina.CodigoPostal;
                 oficinaDb.NumTelemovel = oficina.NumTelemovel;
 

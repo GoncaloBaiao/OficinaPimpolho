@@ -52,18 +52,18 @@ public class OficinaPimpolhoContext : IdentityDbContext<IdentityUser>
                      );
 
         builder.Entity<Oficina>().HasData(
-                        new Oficina { IdOficina = 1001, Nome = "Auto Moderna", Localidade = "Setúbal", CodigoPostal = "2835-276", NumTelemovel = "911111111", Image = "/images/id1_boxcarvulcolisboa.jpg" },
-                        new Oficina { IdOficina = 1002, Nome = "Cuidado Carro", Localidade = "Faro", CodigoPostal = "8500-476", NumTelemovel = "911111112", Image = "/images/id10.jpg" },
-                        new Oficina { IdOficina = 1003, Nome = "Espaço Car", Localidade = "Beja", CodigoPostal = "7600-476", NumTelemovel = "911111113", Image = "/images/id11_corvauto.jpg" },
-                        new Oficina { IdOficina = 1004, Nome = "Esquina da Revisão", Localidade = "Santarém", CodigoPostal = "2140-476", NumTelemovel = "911111114", Image = "/images/id12.jpg" },
-                        new Oficina { IdOficina = 1005, Nome = "Império Car", Localidade = "Porto", CodigoPostal = "4560-476", NumTelemovel = "911111115", Image = "/images/id13_rinoauto.jpg" },
-                        new Oficina { IdOficina = 1006, Nome = "Mecânica Vila", Localidade = "Vila Nova de Gaia", CodigoPostal = "9754-476", NumTelemovel = "911111116", Image = "/images/id2_braga.jpg" },
-                        new Oficina { IdOficina = 1007, Nome = "Mundo dos Carros", Localidade = "Lisboa", CodigoPostal = "2695-476", NumTelemovel = "911111117", Image = "/images/id3_autoarcadgua2.jpg" },
-                        new Oficina { IdOficina = 1008, Nome = "Prime Car", Localidade = "Guarda", CodigoPostal = "6290-476", NumTelemovel = "911111118", Image = "/images/id4.jpg" },
-                        new Oficina { IdOficina = 1009, Nome = "SOS Car", Localidade = "Aveiro", CodigoPostal = "3780-476", NumTelemovel = "911111119", Image = "/images/id6_meiricarro.jpg" },
-                        new Oficina { IdOficina = 1010, Nome = "Rei da mecânica", Localidade = "Braga", CodigoPostal = "4740-476", NumTelemovel = "911111120", Image = "/images/id7_automotor.jpg" },
-                        new Oficina { IdOficina = 1011, Nome = "Pit Stop", Localidade = "Viseu", CodigoPostal = "3450-476", NumTelemovel = "911111121", Image = "/images/id8.jpg" },
-                        new Oficina { IdOficina = 1012, Nome = "Revisa Car", Localidade = "Bragança", CodigoPostal = "5300-815", NumTelemovel = "911111122", Image = "/images/id9_martinho.jpg" }
+                        new Oficina { IdOficina = 1001, Nome = "Auto Moderna", Localidade = "Setúbal", Morada = "Rua da Oficina, 123", CodigoPostal = "2835-276", NumTelemovel = "911111111", Image = "/images/id1_boxcarvulcolisboa.jpg" },
+                        new Oficina { IdOficina = 1002, Nome = "Cuidado Carro", Localidade = "Faro", Morada = "Avenida dos Reparos, 456", CodigoPostal = "8500-476", NumTelemovel = "911111112", Image = "/images/id10.jpg" },
+                        new Oficina { IdOficina = 1003, Nome = "Espaço Car", Localidade = "Beja", Morada = "Rua das Ferramentas, 789", CodigoPostal = "7600-476", NumTelemovel = "911111113", Image = "/images/id11_corvauto.jpg" },
+                        new Oficina { IdOficina = 1004, Nome = "Esquina da Revisão", Localidade = "Santarém", Morada = "Travessa dos Motores, 234", CodigoPostal = "2140-476", NumTelemovel = "911111114", Image = "/images/id12.jpg" },
+                        new Oficina { IdOficina = 1005, Nome = "Império Car", Localidade = "Porto", Morada = "Largo das Revisões, 567", CodigoPostal = "4560-476", NumTelemovel = "911111115", Image = "/images/id13_rinoauto.jpg" },
+                        new Oficina { IdOficina = 1006, Nome = "Mecânica Vila", Localidade = "Vila Nova de Gaia", Morada = "Praça das Soldaduras, 890", CodigoPostal = "9754-476", NumTelemovel = "911111116", Image = "/images/id2_braga.jpg" },
+                        new Oficina { IdOficina = 1007, Nome = "Mundo dos Carros", Localidade = "Lisboa", Morada = "Rua das Pinturas, 345", CodigoPostal = "2695-476", NumTelemovel = "911111117", Image = "/images/id3_autoarcadgua2.jpg" },
+                        new Oficina { IdOficina = 1008, Nome = "Prime Car", Localidade = "Guarda", Morada = "Avenida dos Veículos, 678", CodigoPostal = "6290-476", NumTelemovel = "911111118", Image = "/images/id4.jpg" },
+                        new Oficina { IdOficina = 1009, Nome = "SOS Car", Localidade = "Aveiro", Morada = "Rua dos Mecânicos, 901", CodigoPostal = "3780-476", NumTelemovel = "911111119", Image = "/images/id6_meiricarro.jpg" },
+                        new Oficina { IdOficina = 1010, Nome = "Rei da mecânica", Localidade = "Braga", Morada = "Travessa das Baterias, 234", CodigoPostal = "4740-476", NumTelemovel = "911111120", Image = "/images/id7_automotor.jpg" },
+                        new Oficina { IdOficina = 1011, Nome = "Pit Stop", Localidade = "Viseu", Morada = "Avenida das Transmissões, 567", CodigoPostal = "3450-476", NumTelemovel = "911111121", Image = "/images/id8.jpg" },
+                        new Oficina { IdOficina = 1012, Nome = "Revisa Car", Localidade = "Bragança", Morada = "Rua das Engrenagens, 890", CodigoPostal = "5300-815", NumTelemovel = "911111122", Image = "/images/id9_martinho.jpg" }
                         );
 
        

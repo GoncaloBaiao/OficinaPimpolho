@@ -27,6 +27,14 @@ namespace OficinaPimpolho.Models
         public string Localidade { get; set; }
 
         /// <summary>
+        /// Morada da Oficina
+        /// </summary>
+        [Required(ErrorMessage = "A morada é de preenchimento obrigatório.")]
+        [StringLength(60, ErrorMessage = "A morada não pode ter mais do que 60 caracteres.")]
+        [Display(Name = "Morada")]
+        public string Morada { get; set; }
+
+        /// <summary>
         /// Código Postal da Oficina
         /// </summary>
         [Required(ErrorMessage = "O código postal é de preenchimento obrigatório.")]

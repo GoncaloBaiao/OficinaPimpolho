@@ -24,6 +24,13 @@
         </span>
     </div>
     <div class="mb-3">
+        <label for="exampleInputMorada" class="form-label">Morada</label>
+        <input type="text" asp-for="Morada" class="form-control" id="exampleInputMorada">
+        <span class="text-danger">
+            @Html.ValidationMessageFor(model => model.Morada)
+        </span>
+    </div>
+    <div class="mb-3">
         <label for="exampleInputCodPostal" class="form-label">Código Postal</label>
         <input type="text" asp-for="CodigoPostal" class="form-control" id="exampleInputCodPostal">
         <span class="text-danger">
@@ -53,12 +60,13 @@
         // Obter os valores dos campos de entrada
         var nome = document.getElementById("exampleInputNome").value;
         var localidade = document.getElementById("exampleInputLocalidade").value;
+        var morada = document.getElementById("exampleInputMorada").value;
         var codigoPostal = document.getElementById("exampleInputCodPostal").value;
         var telefone = document.getElementById("exampleInputTelefone").value;
         var imagem = document.getElementById("exampleInputImageLink").value;
 
         // Verificar se os campos estão preenchidos
-        if (nome === "" || localidade === "" || codigoPostal === "" || telefone === "" || imagem === "") {
+        if (nome === "" || localidade === "" || morada === "" || codigoPostal === "" || telefone === "" || imagem === "") {
             alert("Por favor, preencha todos os campos.");
             return false; // Impede o envio do formulário
         }

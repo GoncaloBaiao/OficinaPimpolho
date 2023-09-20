@@ -27,6 +27,13 @@
         </span>
     </div>
     <div class="mb-3">
+        <label for="exampleInputMorada" class="form-label">Morada</label>
+        <input type="text" asp-for="Morada" class="form-control" id="exampleInputMorada">
+        <span class="text-danger">
+            @Html.ValidationMessageFor(model => model.Morada)
+        </span>
+    </div>
+    <div class="mb-3">
         <label for="exampleInputCodigoPostal" class="form-label">Código Postal</label>
         <input type="text" asp-for="CodigoPostal" class="form-control" id="exampleInputCodigoPostal">
         <span class="text-danger">
