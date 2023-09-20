@@ -24,7 +24,7 @@ namespace OficinaPimpolho.Controllers
                 MarcacaoList = marcacoes,
                 Serviços = oficinaRepositorio.ObterServicos()
             };
-    
+            
 
         return View(viewModel);
         }
@@ -61,34 +61,39 @@ namespace OficinaPimpolho.Controllers
         }
 
 
-        [Authorize(Roles = "Gestor")]
         [HttpPost]
-        public async Task<IActionResult> Criar([FromBody] UploadMarcacao marcacao)
-        {
-            //Servico servico = oficinaRepositorio.ObterServicoId(1);//marcacao.MarcacaoServico = marcacaoServicos;
+[Authorize(Roles = "Gestor")]
+public async Task<IActionResult> Criar([FromBody] UploadMarcacao marcacao)
+{
+            // Create a new Marcacao
+            Marcacao marcacaoRecord = new Marcacao
+            {
+                Nome = marcacao.Name,
+                Preco = 160,
+                DataMarcacao = DateTime.Now,
+                MarcacaoServico = new List<MarcacaoServico>() // Initialize the collection
+            };
 
-            Marcacao marcacaoRecord = new Marcacao {Nome=marcacao.Name, Preco=160, DataMarcacao= DateTime.Now};//a DateTime.Now tem de ser da marcacao
-            List<Servico> lista = new List<Servico>();
-            foreach (var Item in marcacao.Servicos) {
-                if (oficinaRepositorio.ObterServicoNome(Item) != null)
+            foreach (var item in marcacao.Servicos)
+            {
+                var servico = oficinaRepositorio.ObterServicoNome(item);
+                if (servico != null)
                 {
-                    lista.Add(oficinaRepositorio.ObterServicoNome(Item));
+                    marcacaoRecord.MarcacaoServico.Add(new MarcacaoServico
+                    {
+                        Servico = servico
+                    });
                 }
             }
 
             var m = oficinaRepositorio.Adicionar(marcacaoRecord);
-            List<MarcacaoServico> marcacaoServicos = new List<MarcacaoServico>();
-            foreach (var item in lista) { 
-            marcacaoServicos.Add( new MarcacaoServico { MarcacaoId = marcacaoRecord.IdMarcacao, ServicoId = item.IdServico, Marcacao = marcacaoRecord, Servico = item } );
-                
-            }
-            
-            m.MarcacaoServico = marcacaoServicos;
             await oficinaRepositorio.Salvar();
 
+
             var a = "resultou";
-            return new JsonResult(a);
-        }
+    return new JsonResult(a);
+}
+
 
 
         [Authorize(Roles = "Gestor")]
@@ -103,6 +108,7 @@ namespace OficinaPimpolho.Controllers
             
             return oficinaRepositorio.ObterMarcacao();
         }
+
 
 
 

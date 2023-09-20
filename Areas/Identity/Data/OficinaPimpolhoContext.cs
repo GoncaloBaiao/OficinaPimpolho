@@ -74,5 +74,6 @@ public class OficinaPimpolhoContext : IdentityDbContext<IdentityUser>
     public DbSet<Marcacao> Marcacao { get; set; }
     public DbSet<Gestor> Gestor { get; set; }
     public DbSet<Servico> Servico { get; set; }
+    public DbSet<MarcacaoServico> MarcacaoServicos { get; set; }
 
-}
+} 
