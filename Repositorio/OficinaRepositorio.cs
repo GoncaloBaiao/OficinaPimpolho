@@ -65,7 +65,9 @@ namespace OficinaPimpolho.Repositorio
 
         public List<Marcacao> ObterMarcacao()
         {
-            return _context.Marcacao.ToList();
+            
+            var result = _context.Marcacao.ToList();
+            return result;
         }
 
         public Marcacao ObterMarcacaoId(int Id)
@@ -124,5 +126,8 @@ namespace OficinaPimpolho.Repositorio
         {
             await _context.SaveChangesAsync();
         }
+
+
+
     }
 }
