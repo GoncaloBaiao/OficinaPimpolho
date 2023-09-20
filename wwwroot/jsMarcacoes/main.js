@@ -8,7 +8,12 @@
         const response = await fetch("/Marcacoes/ObterMarcacoes");
         const movies = await response.json();
         console.log(movies);
-
+        for (var i = 0; i < movies.length; i++) {
+            new_event_json(movies[i].nome, 0, new Date(movies[i].dataMarcacao), new Date(movies[i].dataMarcacao).getDate())
+        }
+        const marc = movies.map(x => { return { invited_count: 0, ocasion: x.nome, year: new Date(x.dataMarcacao).getFullYear(), month: new Date(x.dataMarcacao).getMonth()+1, day: new Date(x.dataMarcacao).getDate() } })
+        console.log(marc);
+        //event_data.events = [...marc];
         var date = new Date();
         var today = date.getDate();
         // Set click handlers for DOM elements
@@ -223,18 +228,11 @@
                 var event_name = $("<div class='event-name'>" + events[i]["occasion"] + ":</div>");
                 var event_count = $("<div class='event-count'>" + " </div>");
                 console.log(event_count);
-                for (var i = 0; i < servicos.length; i++) {
-                    event_count[0].innerHTML += servicos[i] + " ";
-                }
+                //for (var i = 0; i < servicos.length; i++) {
+                //    event_count[0].innerHTML += servicos[i] + " ";
+                //}
 
 
-
-                /*if(events[i]["cancelled"]===true) {
-                    $(event_card).css({
-                        "border-left": "10px solid #FF1744"
-                    });
-                    event_count = $("<div class='event-cancelled'>Cancelled</div>");
-                }*/
                 $(event_card).append(event_name).append(event_count);
                 $(".events-container").append(event_card);
             }
@@ -260,92 +258,7 @@
 
     // Given data for events in JSON format
     var event_data = {
-        "events": [
-            {
-
-                "occasion": " Repeated Test Event ",
-                "invited_count": 120,
-                "year": 2023,
-                "month": 9,
-                "day": 28,
-                "cancelled": true
-            },
-            {
-                "occasion": " Repeated Test Event ",
-                "invited_count": 120,
-                "year": 2023,
-                "month": 9,
-                "day": 10,
-                "cancelled": true
-            },
-            {
-                "occasion": " Repeated Test Event ",
-                "invited_count": 120,
-                "year": 2023,
-                "month": 9,
-                "day": 10,
-                "cancelled": true
-            },
-            {
-                "occasion": " Repeated Test Event ",
-                "invited_count": 120,
-                "year": 2020,
-                "month": 5,
-                "day": 10
-            },
-            {
-                "occasion": " Repeated Test Event ",
-                "invited_count": 120,
-                "year": 2020,
-                "month": 5,
-                "day": 10,
-                "cancelled": true
-            },
-            {
-                "occasion": " Repeated Test Event ",
-                "invited_count": 120,
-                "year": 2023,
-                "month": 8,
-                "day": 20
-            },
-            {
-                "occasion": " Repeated Test Event ",
-                "invited_count": 120,
-                "year": 2020,
-                "month": 5,
-                "day": 10,
-                "cancelled": true
-            },
-            {
-                "occasion": " Repeated Test Event ",
-                "invited_count": 120,
-                "year": 2020,
-                "month": 5,
-                "day": 10
-            },
-            {
-                "occasion": " Repeated Test Event ",
-                "invited_count": 120,
-                "year": 2020,
-                "month": 5,
-                "day": 10,
-                "cancelled": true
-            },
-            {
-                "occasion": " Repeated Test Event ",
-                "invited_count": 120,
-                "year": 2020,
-                "month": 5,
-                "day": 10
-            },
-            {
-                "occasion": " Test Event",
-                "invited_count": 120,
-                "year": 2020,
-                "month": 5,
-                "day": 11
-            }
-        ]
+        "events": []
     };
 
     const months = [
