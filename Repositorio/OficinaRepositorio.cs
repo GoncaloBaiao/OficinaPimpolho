@@ -4,10 +4,10 @@ using OficinaPimpolho.Models;
 
 namespace OficinaPimpolho.Repositorio
 {
-    public class ContatoRepositorio : IContatoRepositorio
+    public class OficinaRepositorio : IOficinaRepositorio
     {
         private readonly OficinaPimpolhoContext _context;
-        public ContatoRepositorio(OficinaPimpolhoContext pimpolhoContext)
+        public OficinaRepositorio(OficinaPimpolhoContext pimpolhoContext)
         {
             this._context = pimpolhoContext;
         }
@@ -65,7 +65,9 @@ namespace OficinaPimpolho.Repositorio
 
         public List<Marcacao> ObterMarcacao()
         {
-            return _context.Marcacao.ToList();
+            
+            var result = _context.Marcacao.ToList(); 
+            return result;
         }
 
         public Marcacao ObterMarcacaoId(int Id)
@@ -124,5 +126,8 @@ namespace OficinaPimpolho.Repositorio
         {
             await _context.SaveChangesAsync();
         }
+
+
+
     }
 }

@@ -18,7 +18,7 @@ public class Program
 
         // Add services to the container.
         builder.Services.AddControllersWithViews();
-        //builder.Services.AddScoped<IContatoRepositorio, ContatoRepositorio>();
+        //builder.Services.AddScoped<IOficinaRepositorio, OficinaRepositorio>();
         builder.Services.AddRazorPages();
         var app = builder.Build();
 

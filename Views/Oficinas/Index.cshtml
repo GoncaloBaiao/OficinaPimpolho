@@ -1,7 +1,8 @@
 ﻿@model List<Oficina>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
-    ViewData["Title"] = "Lista de contatos";
+    ViewData["Title"] = "Lista de Oficinas";
 
 }
 <!-- Custom styles for this template -->
@@ -13,7 +14,7 @@
 @if (User.IsInRole("Gestor"))
 {
 <div class="d-grid gap-2 d-md-flex" style="margin-top:10px;">
-    <a class="btn btn-outline-primary" role="button" asp-controller="Contato" asp-action="Criar">Criar Oficinas</a>
+        <a class="btn btn-outline-primary" role="button" asp-controller="Oficinas" asp-action="Criar">Criar Oficinas</a>
 </div>
 }
 <br />
@@ -63,10 +64,10 @@
                                 <br />
                                 <div class="row">
                                     <div class="col-md-4 col-sm-4 col-xs-4">
-                                        <a role="button" class="btn btn-outline-warning" asp-controller="Contato" asp-route-id="@item.IdOficina" asp-action="Editar" style="color:darkgoldenrod">Editar</a>
+                                        <a role="button" class="btn btn-outline-warning" asp-controller="Oficinas" asp-route-id="@item.IdOficina" asp-action="Editar" style="color:darkgoldenrod">Editar</a>
                                     </div>
                                     <div class="col-md-4 col-sm-4 col-xs-4">
-                                        <a role="button" class="btn btn-outline-danger" asp-route-id="@item.IdOficina" asp-controller="Contato" asp-action="ApagarConfirmacao" style="color:darksalmon">Apagar</a>
+                                        <a role="button" class="btn btn-outline-danger" asp-route-id="@item.IdOficina" asp-controller="Oficinas" asp-action="ApagarConfirmacao" style="color:darksalmon">Apagar</a>
                                     </div>
                                 </div>
                             </div>
