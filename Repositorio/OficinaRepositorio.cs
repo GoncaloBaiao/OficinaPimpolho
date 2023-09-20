@@ -66,7 +66,7 @@ namespace OficinaPimpolho.Repositorio
         public List<Marcacao> ObterMarcacao()
         {
             
-            var result = _context.Marcacao.ToList();
+            var result = _context.Marcacao.ToList(); 
             return result;
         }
 
