@@ -81,7 +81,7 @@ namespace OficinaPimpolho.Areas.Identity.Pages.Account.Manage
             {
                 if (!await _userManager.CheckPasswordAsync(user, Input.Password))
                 {
-                    ModelState.AddModelError(string.Empty, "Incorrect password.");
+                    ModelState.AddModelError(string.Empty, "Password incorreta.");
                     return Page();
                 }
             }
@@ -90,7 +90,7 @@ namespace OficinaPimpolho.Areas.Identity.Pages.Account.Manage
             var userId = await _userManager.GetUserIdAsync(user);
             if (!result.Succeeded)
             {
-                throw new InvalidOperationException($"Unexpected error occurred deleting user.");
+                throw new InvalidOperationException($"Erro inesperado ao apagar o utilizador.");
             }
 
             await _signInManager.SignOutAsync();

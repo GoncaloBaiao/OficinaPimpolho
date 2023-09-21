@@ -78,9 +78,9 @@ namespace OficinaPimpolho.Areas.Identity.Pages.Account.Manage
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
-            [StringLength(7, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(7, ErrorMessage = "A {0} deve ter no mínimo {2} e no máximo {1} caracteres de comprimento.", MinimumLength = 6)]
             [DataType(DataType.Text)]
-            [Display(Name = "Verification Code")]
+            [Display(Name = "Código de verificação")]
             public string Code { get; set; }
         }
 

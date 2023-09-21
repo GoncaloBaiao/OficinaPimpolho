@@ -54,7 +54,7 @@ namespace OficinaPimpolho.Areas.Identity.Pages.Account.Manage
             /// </summary>
             [Required]
             [DataType(DataType.Password)]
-            [Display(Name = "Current password")]
+            [Display(Name = "Password atual")]
             public string OldPassword { get; set; }
 
             /// <summary>
@@ -62,9 +62,9 @@ namespace OficinaPimpolho.Areas.Identity.Pages.Account.Manage
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "A {0} tem de ter no minimo {2} e no máximo {1} caracteres de comprimento.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "New password")]
+            [Display(Name = "Password nova")]
             public string NewPassword { get; set; }
 
             /// <summary>
@@ -72,8 +72,8 @@ namespace OficinaPimpolho.Areas.Identity.Pages.Account.Manage
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm new password")]
-            [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+            [Display(Name = "Confirme a sua password")]
+            [Compare("NewPassword", ErrorMessage = "As suas passwords não combinam.")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -118,8 +118,8 @@ namespace OficinaPimpolho.Areas.Identity.Pages.Account.Manage
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            _logger.LogInformation("User changed their password successfully.");
-            StatusMessage = "Your password has been changed.";
+            _logger.LogInformation("Mudou a sua password com sucesso.");
+            StatusMessage = "A sua password foi alterada.";
 
             return RedirectToPage();
         }

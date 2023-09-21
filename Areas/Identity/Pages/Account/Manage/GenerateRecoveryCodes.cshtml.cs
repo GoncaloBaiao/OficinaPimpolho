@@ -50,7 +50,7 @@ namespace OficinaPimpolho.Areas.Identity.Pages.Account.Manage
             var isTwoFactorEnabled = await _userManager.GetTwoFactorEnabledAsync(user);
             if (!isTwoFactorEnabled)
             {
-                throw new InvalidOperationException($"Cannot generate recovery codes for user because they do not have 2FA enabled.");
+                throw new InvalidOperationException($"Não é possível gerar códigos de recuperação para o usuário porque ele não tem 2FA ativado.");
             }
 
             return Page();
@@ -68,14 +68,14 @@ namespace OficinaPimpolho.Areas.Identity.Pages.Account.Manage
             var userId = await _userManager.GetUserIdAsync(user);
             if (!isTwoFactorEnabled)
             {
-                throw new InvalidOperationException($"Cannot generate recovery codes for user as they do not have 2FA enabled.");
+                throw new InvalidOperationException($"Não é possível gerar códigos de recuperação para o usuário porque ele não tem 2FA ativado.");
             }
 
             var recoveryCodes = await _userManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 10);
             RecoveryCodes = recoveryCodes.ToArray();
 
-            _logger.LogInformation("User with ID '{UserId}' has generated new 2FA recovery codes.", userId);
-            StatusMessage = "You have generated new recovery codes.";
+            _logger.LogInformation("Utilizador com ID '{UserId}' gerou novos códigos de recuperação 2FA.", userId);
+            StatusMessage = "Você gerou novos códigos de recuperação.";
             return RedirectToPage("./ShowRecoveryCodes");
         }
     }
