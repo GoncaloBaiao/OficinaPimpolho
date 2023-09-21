@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OficinaPimpolho.Data;
+using OficinaPimpolho.Models;
 using OficinaPimpolho.Repositorio;
 
 public class Program
@@ -66,6 +67,7 @@ public class Program
 
             if (await userManager.FindByEmailAsync(gestorEmail) == null)
             {
+                var context = scope.ServiceProvider.GetRequiredService<OficinaPimpolhoContext>();
                 var gestorUser = new IdentityUser();
                 gestorUser.UserName = gestorEmail;
                 gestorUser.Email = gestorEmail;
@@ -73,6 +75,20 @@ public class Program
                 await userManager.CreateAsync(gestorUser, gestorPassword);
 
                 await userManager.AddToRoleAsync(gestorUser, "Gestor");
+
+                // Criar um novo gestor
+                var gestor = new Gestor
+                {
+                    IdGestor = 1,
+                    Nome = "Gestor",
+                    Email = "gestor@gestor.com",
+                    Ntelemovel = "912345678",
+                    OficinaId = 1 
+                };
+
+                
+                context.Gestor.Add(gestor);
+                await context.SaveChangesAsync();
             }
         }
 
