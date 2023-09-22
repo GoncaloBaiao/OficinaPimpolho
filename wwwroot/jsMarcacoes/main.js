@@ -226,7 +226,7 @@
             for (var i = 0; i < events.length; i++) {
                 var event_card = $("<div class='event-card'></div>");
                 var event_name = $("<div class='event-name'>" + events[i]["occasion"] + ":</div>");
-                var event_count = $("<div class='event-count'>" + " </div>");
+                var event_count = $("<div class='event-count'>" + '<a role="button" class="btn btn-outline-warning" style="color:darkgoldenrod">Editar</a>' + '<a role="button" class="btn btn-outline-danger" style="color:darksalmon">Apagar</a>' + " </div>");
                 console.log(event_count);
                 //for (var i = 0; i < servicos.length; i++) {
                 //    event_count[0].innerHTML += servicos[i] + " ";
