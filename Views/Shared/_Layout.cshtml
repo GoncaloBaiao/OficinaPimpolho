@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="~/OficinaPimpolho.styles.css" asp-append-version="true" />
 </head>
 <body>
-<!-- header section strats -->
+    <!-- Início da seção de cabeçalho -->
         <header class="header_section">
             <div class="container">
                 <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
@@ -22,7 +22,7 @@
 
                         </span>
                     </a>
-
+                <!-- Início da barra de navegação -->
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
                             <ul class="navbar-nav  ">
@@ -37,19 +37,22 @@
                             </ul>
                         </div>
                     </div>
+                <!-- Fim da barra de navegação -->
                 </nav>
             </div>
         </header>
-        <!-- end header section -->
-    <div class="container">
+    <!-- Fim da seção de cabeçalho -->
+    <!-- Renderiza o corpo da página -->
+    <div class="container"> 
         <main role="main" class="pb-3">
-            @RenderBody()
+            @RenderBody() 
         </main>
     </div>
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    <!-- Início dos scripts -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script> <!-- Importa o jQuery -->
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> <!-- Importa os scripts do Bootstrap -->
+    <script src="~/js/site.js" asp-append-version="true"></script> <!-- Importa um arquivo de script personalizado -->
+    @await RenderSectionAsync("Scripts", required: false) <!-- Renderiza uma seção de scripts opcionais -->
+    <!-- Fim dos scripts -->
 </body>
 </html>

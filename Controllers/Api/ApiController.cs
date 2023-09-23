@@ -81,7 +81,7 @@ namespace OficinaPimpolho.Controllers.Api
         {
             var tokenHandler = new JwtSecurityTokenHandler();
 
-            // Gerar uma chave secreta aleatória com 32 bytes de comprimento
+            // Gera uma chave secreta aleatória com 32 bytes de comprimento
             byte[] keyBytes = new byte[32];
             using (var rng = new RNGCryptoServiceProvider())
             {
@@ -90,7 +90,7 @@ namespace OficinaPimpolho.Controllers.Api
 
             // Converter a chave em uma string base64 para uso posterior
             string secretKey = Convert.ToBase64String(keyBytes);
-            var key = Encoding.ASCII.GetBytes(secretKey); // Substitua pela sua chave secreta
+            var key = Encoding.ASCII.GetBytes(secretKey); // Substitui pela sua chave secreta
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
@@ -117,17 +117,17 @@ namespace OficinaPimpolho.Controllers.Api
         [HttpPost("Login")]
         public async Task<IActionResult> Login(LoginViewModel.LoginViewModels model)
         {
-            // Validar as credenciais do usuário
+            // Valida as credenciais do usuário
             if (await IsValidUser(model.Username, model.Password))
             {
-                // Crie um token de autenticação para o usuário
+                // Cria um token de autenticação para o usuário
                 var token = GenerateToken(model.Username);
 
-                // Retorne o token como resposta
+                // Retorna o token como resposta
                 return Ok(token);
             }
 
-            // Se as credenciais forem inválidas, retorne uma resposta de erro
+            // Se as credenciais forem inválidas, retorna uma resposta de erro
             return BadRequest("Credenciais inválidas.");
         }
 

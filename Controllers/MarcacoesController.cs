@@ -18,6 +18,7 @@ namespace OficinaPimpolho.Controllers
         [Authorize(Roles = "Cliente,Gestor")]
         public IActionResult Index()
         {
+            // Obtém as marcações e os serviços e os passa para a view
             var marcacoes = oficinaRepositorio.ObterMarcacao();
             var viewModel = new MarcacaoViewModel
             {
@@ -32,6 +33,7 @@ namespace OficinaPimpolho.Controllers
         [Authorize(Roles = "Gestor")]
         public IActionResult Criar()
         {
+            // Retorna a view para criar uma nova marcação
             return View();
         }
 
@@ -39,6 +41,7 @@ namespace OficinaPimpolho.Controllers
         [HttpGet]
         public IActionResult Editar(int Id)
         {
+            // Retorna a view para editar uma marcação com o ID especificado
             Marcacao marcacao = oficinaRepositorio.ObterMarcacaoId(Id);
 
             return View(marcacao);
@@ -48,7 +51,7 @@ namespace OficinaPimpolho.Controllers
         [HttpPost]
         public IActionResult Edit(Marcacao marcacao)
         {
-
+            // Atualiza os detalhes de uma marcação com base nos dados fornecidos
             oficinaRepositorio.Atualizar(marcacao);
             return RedirectToAction("Index");
         }
@@ -56,22 +59,24 @@ namespace OficinaPimpolho.Controllers
         [Authorize(Roles = "Gestor")]
         public IActionResult ApagarConfirmacao(int Id)
         {
+            // Retorna a view para confirmar a exclusão de uma marcação com o ID especificado
             var marcacao = oficinaRepositorio.ObterMarcacaoId(Id);
             return View(marcacao);
         }
 
 
         [HttpPost]
-[Authorize(Roles = "Gestor")]
-public async Task<IActionResult> Criar([FromBody] UploadMarcacao marcacao)
-{
-            // Create a new Marcacao
+        [Authorize(Roles = "Gestor")]
+        public async Task<IActionResult> Criar([FromBody] UploadMarcacao marcacao)
+        {
+            // Cria uma nova marcação com os dados fornecidos
+            // Adiciona serviços associados à marcação
             Marcacao marcacaoRecord = new Marcacao
             {
                 Nome = marcacao.Name,
                 Preco = 160,
                 DataMarcacao = DateTime.Now,
-                MarcacaoServico = new List<MarcacaoServico>() // Initialize the collection
+                MarcacaoServico = new List<MarcacaoServico>() // Inicializa a coleção
             };
 
             foreach (var item in marcacao.Servicos)
@@ -91,21 +96,22 @@ public async Task<IActionResult> Criar([FromBody] UploadMarcacao marcacao)
 
 
             var a = "resultou";
-    return new JsonResult(a);
-}
+            return new JsonResult(a);
+        }
 
 
 
         [Authorize(Roles = "Gestor")]
         public IActionResult Apagar(int Id)
         {
+            // Remove uma marcação com o ID especificado
             oficinaRepositorio.Apagar(Id);
             return RedirectToAction("Index");
         }
 
         public List<Marcacao> ObterMarcacoes()
         {
-            
+            // Obtém a lista de marcações
             return oficinaRepositorio.ObterMarcacao();
         }
 

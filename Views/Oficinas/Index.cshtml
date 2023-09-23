@@ -11,6 +11,7 @@
 
 <br />
 <br />
+<!-- Botão para criar uma nova oficina (apenas para utilizadores com a função "Gestor") -->
 @if (User.IsInRole("Gestor"))
 {
 <div class="d-grid gap-2 d-md-flex" style="margin-top:10px;">
@@ -19,9 +20,9 @@
 }
 <br />
 <br />
-
+<!-- Container para a lista de oficinas -->
 <div class="container">
-    
+    <!-- Iteração sobre cada oficina no modelo -->
         @foreach (var item in Model)
         {
             <div class="col-xs-12 col-md-6 bootstrap snippets bootdeys">
@@ -62,15 +63,17 @@
                                 <a>Telefone:</a>
                                 <p>@item.NumTelemovel</p>
                             </div>
-
+                        <!-- Ações para o gestor -->
                         @if (User.IsInRole("Gestor"))
                         {
                             <div class="product-info smart-form">
                                 <br />
                                 <div class="row">
+                                    <!-- Botão para editar a oficina -->
                                     <div class="col-md-4 col-sm-4 col-xs-4">
                                         <a role="button" class="btn btn-outline-warning" asp-controller="Oficinas" asp-route-id="@item.IdOficina" asp-action="Editar" style="color:darkgoldenrod">Editar</a>
                                     </div>
+                                    <!-- Botão para apagar a oficina -->
                                     <div class="col-md-4 col-sm-4 col-xs-4">
                                         <a role="button" class="btn btn-outline-danger" asp-route-id="@item.IdOficina" asp-controller="Oficinas" asp-action="ApagarConfirmacao" style="color:darksalmon">Apagar</a>
                                     </div>

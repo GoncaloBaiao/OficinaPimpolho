@@ -11,7 +11,7 @@ public class OficinaPimpolhoContext : IdentityDbContext<IdentityUser>
         : base(options)
     {
     }
-
+    // Método de configuração de modelo
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -68,7 +68,7 @@ public class OficinaPimpolhoContext : IdentityDbContext<IdentityUser>
 
        
     }
-    // Representar as Tabelas da BD
+    // Métodos para representar as tabelas da BD
     public DbSet<Cliente> Cliente { get; set; }
     public DbSet<Oficina> Oficina { get; set; }
     public DbSet<Marcacao> Marcacao { get; set; }

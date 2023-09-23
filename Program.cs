@@ -9,21 +9,21 @@ public class Program
     public static async Task Main(string[] args) {
         var builder = WebApplication.CreateBuilder(args);
         var connectionString = builder.Configuration.GetConnectionString("OficinaPimpolhoContextConnection") ?? throw new InvalidOperationException("Connection string 'OficinaPimpolhoContextConnection' not found.");
-
+        // Configuração da base de dados
         builder.Services.AddDbContext<OficinaPimpolhoContext>(options =>
             options.UseSqlServer(connectionString));
-
+        // Configuração da autenticação e autorização
         builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<OficinaPimpolhoContext>();
 
-        // Add services to the container.
+        // Adiciona serviços ao container
         builder.Services.AddControllersWithViews();
         //builder.Services.AddScoped<IOficinaRepositorio, OficinaRepositorio>();
         builder.Services.AddRazorPages();
         var app = builder.Build();
 
-        // Configure the HTTP request pipeline.
+        // Configurar o pipeline de solicitação HTTP
         if (!app.Environment.IsDevelopment())
         {
             app.UseExceptionHandler("/Home/Error");
@@ -38,7 +38,7 @@ public class Program
         app.UseAuthentication(); ;
 
         app.UseAuthorization();
-
+        // Mapeamento de rota padrão
         app.MapControllerRoute(
             name: "default",
             pattern: "{controller=Home}/{action=Index}/{id?}");
@@ -48,7 +48,7 @@ public class Program
         {
             var roleManager =
                 scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-
+            // Configuração inicial dos roles 
             var roles = new[] { "Gestor", "Cliente" };
 
             foreach (var role in roles)
@@ -71,12 +71,12 @@ public class Program
                 var gestorUser = new IdentityUser();
                 gestorUser.UserName = gestorEmail;
                 gestorUser.Email = gestorEmail;
-
+                // Criação de usuário e associação ao papel "Gestor"
                 await userManager.CreateAsync(gestorUser, gestorPassword);
 
                 await userManager.AddToRoleAsync(gestorUser, "Gestor");
 
-                // Criar um novo gestor
+                // Criação um novo gestor
                 var gestor = new Gestor
                 {
                     IdGestor = 1,
@@ -86,7 +86,7 @@ public class Program
                     OficinaId = 1 
                 };
 
-                
+                //Adiciona gestor à tabela 
                 context.Gestor.Add(gestor);
                 await context.SaveChangesAsync();
             }

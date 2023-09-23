@@ -12,21 +12,26 @@
     <div class="container">
       <div class="row" style="display:flex; align-items:center;">
         <div class="col-md-6">
+          <!-- Serviço detalhes -->
           <div class="detail-box">
             <div class="heading_container">
+              <!-- Titulo do serviço -->
               <h2>
                 @Model.titulo
               </h2>
             </div>
+             <!-- SubTitulo do serviço -->
             <h5>
                 @Model.subtitulo
             </h5>
+            <!-- Descrição do serviço -->
             <p>
                 @Model.description
             </p>
             
           </div>
         </div>
+        <!-- Imagem do serviço -->
         <div class="col-md-6">
           <div class="img-box">
             <img src="@Model.image" alt="">

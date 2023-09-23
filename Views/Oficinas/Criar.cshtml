@@ -8,7 +8,9 @@
 <div class="text-center">
     <h1 class="display-4">Criar Oficina</h1>
 </div>
+<!-- Formulário para criar uma oficina -->
 <form asp-controller="Oficinas" asp-action="Criar" method="post" enctype="multipart/form-data" onsubmit="return validarFormulario()">
+    <!-- Campo de entrada para o nome -->
     <div class="mb-3">
         <label for="exampleInputNome" class="form-label">Nome</label>
         <input type="text" asp-for="Nome" class="form-control" id="exampleInputNome">
@@ -16,6 +18,7 @@
             @Html.ValidationMessageFor(model => model.Nome)
         </span>
     </div>
+    <!-- Campo de entrada para a localidade -->
     <div class="mb-3">
         <label for="exampleInputLocalidade" class="form-label">Localidade</label>
         <input type="text" asp-for="Localidade" class="form-control" id="exampleInputLocalidade">
@@ -23,6 +26,7 @@
             @Html.ValidationMessageFor(model => model.Localidade)
         </span>
     </div>
+    <!-- Campo de entrada para a morada -->
     <div class="mb-3">
         <label for="exampleInputMorada" class="form-label">Morada</label>
         <input type="text" asp-for="Morada" class="form-control" id="exampleInputMorada">
@@ -30,6 +34,7 @@
             @Html.ValidationMessageFor(model => model.Morada)
         </span>
     </div>
+    <!-- Campo de entrada para o codigo postal -->
     <div class="mb-3">
         <label for="exampleInputCodPostal" class="form-label">Código Postal</label>
         <input type="text" asp-for="CodigoPostal" class="form-control" id="exampleInputCodPostal">
@@ -37,6 +42,7 @@
             @Html.ValidationMessageFor(model => model.CodigoPostal)
         </span>
     </div>
+    <!-- Campo de entrada para o Nº de telemovel -->
     <div class="mb-3">
         <label for="exampleInputTelefone" class="form-label">Telefone</label>
         <input type="text" asp-for="NumTelemovel" class="form-control" id="exampleInputTelefone">
@@ -44,6 +50,7 @@
             @Html.ValidationMessageFor(model => model.NumTelemovel)
         </span>
     </div>
+    <!-- Campo de entrada para a imagem -->
     <div class="mb-3">
         <label for="exampleInputImageLink" class="form-label">Imagem</label>
         <input type="file" class="form-control" id="exampleInputImageLink" name="upload" accept="image/png, image/jpg">
@@ -51,6 +58,7 @@
             @Html.ValidationMessageFor(model => model.Image)
         </span>
     </div>
+    <!-- Botão para enviar o formulário -->
     <button type="submit" class="btn btn-primary">Submit</button>
     <a class="btn btn-secondary" asp-controller="Oficinas" asp-action="Index" role="button">Voltar</a>
 </form>
