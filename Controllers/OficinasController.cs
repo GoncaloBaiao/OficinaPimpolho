@@ -54,10 +54,19 @@ namespace OficinaPimpolho.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Gestor")]
-        public async Task<IActionResult> Criar(Oficina oficina)
+        public async Task<IActionResult> Criar(Oficina oficina, IFormFile upload)
         {
-            oficinaRepositorio.Adicionar(oficina);
-            return RedirectToAction("Index");
+            if (upload != null && upload.Length > 0) {
+                var fileName = Path.GetFileName(upload.FileName);
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
+                oficina.Image = fileName;
+                oficinaRepositorio.Adicionar(oficina);
+                using (var fileSrteam = new FileStream(filePath, FileMode.Create))
+                {
+                    await upload.CopyToAsync(fileSrteam);
+                }
+                
+            }return RedirectToAction("Index");
         }
 
 

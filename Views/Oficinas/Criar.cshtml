@@ -8,7 +8,7 @@
 <div class="text-center">
     <h1 class="display-4">Criar Oficina</h1>
 </div>
-<form asp-controller="Oficinas" asp-action="Criar" method="post" onsubmit="return validarFormulario()">
+<form asp-controller="Oficinas" asp-action="Criar" method="post" enctype="multipart/form-data" onsubmit="return validarFormulario()">
     <div class="mb-3">
         <label for="exampleInputNome" class="form-label">Nome</label>
         <input type="text" asp-for="Nome" class="form-control" id="exampleInputNome">
@@ -46,7 +46,7 @@
     </div>
     <div class="mb-3">
         <label for="exampleInputImageLink" class="form-label">Imagem</label>
-        <input type="text" asp-for="Image" class="form-control" id="exampleInputImageLink">
+        <input type="file" class="form-control" id="exampleInputImageLink" name="upload" accept="image/png, image/jpg">
         <span class="text-danger">
             @Html.ValidationMessageFor(model => model.Image)
         </span>

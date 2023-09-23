@@ -41,14 +41,14 @@ public class OficinaPimpolhoContext : IdentityDbContext<IdentityUser>
             .HasForeignKey(cd => cd.ServicoId);
 
         builder.Entity<Servico>().HasData(
-                new Servico { IdServico = 1, Preco = "110€ - 600€", Nome = "Estofos", Image= "/images/estofoCarro.jpg" },
-                new Servico { IdServico = 2, Preco = "85€ - 150€", Nome = "Vidros", Image = "/images/vidroReparo.jpg" },
-                new Servico { IdServico = 3, Preco = "400€ - 650€", Nome = "Mecânica", Image = "/images/mecanica4.jpg" },
-                new Servico { IdServico = 4, Preco = "100€ - 300€", Nome = "Pneus", Image = "/images/pneuReparo.jpg" },
-                new Servico { IdServico = 5, Preco = "50€ - 880+€", Nome = "Bate-chapas", Image = "/images/bateChapas.jpg" },
-                new Servico { IdServico = 6, Preco = "100€ - 995€", Nome = "Eletricidade/Eletrónica", Image = "/images/eletronica2.jpg" },
-                new Servico { IdServico = 7, Preco = "300€ - 700€", Nome = "Pintura", Image = "/images/pintura.jpg" },
-                new Servico { IdServico = 8, Preco = "30€ - 60€", Nome = "Assistência em Viagem", Image = "/images/assistencia2.jpg" }
+                new Servico { IdServico = 1, Preco = "110€ - 600€", Nome = "Estofos", Image= "estofoCarro.jpg" },
+                new Servico { IdServico = 2, Preco = "85€ - 150€", Nome = "Vidros", Image = "vidroReparo.jpg" },
+                new Servico { IdServico = 3, Preco = "400€ - 650€", Nome = "Mecânica", Image = "mecanica4.jpg" },
+                new Servico { IdServico = 4, Preco = "100€ - 300€", Nome = "Pneus", Image = "pneuReparo.jpg" },
+                new Servico { IdServico = 5, Preco = "50€ - 880+€", Nome = "Bate-chapas", Image = "bateChapas.jpg" },
+                new Servico { IdServico = 6, Preco = "100€ - 995€", Nome = "Eletricidade/Eletrónica", Image = "eletronica2.jpg" },
+                new Servico { IdServico = 7, Preco = "300€ - 700€", Nome = "Pintura", Image = "pintura.jpg" },
+                new Servico { IdServico = 8, Preco = "30€ - 60€", Nome = "Assistência em Viagem", Image = "assistencia2.jpg" }
                      );
 
         builder.Entity<Oficina>().HasData(
